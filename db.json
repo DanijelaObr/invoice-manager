@@ -1,0 +1,135 @@
+{
+  "invoices": [
+    {
+      "sellerId": "3",
+      "customerId": "3",
+      "date": "2026-07-01",
+      "amount": 10000,
+      "id": "iqfXsQBRqY0"
+    },
+    {
+      "sellerId": "kYGadnw-r-s",
+      "customerId": "3",
+      "date": "2026-07-01",
+      "amount": 100000,
+      "id": "bObKga5G76w"
+    },
+    {
+      "sellerId": "2",
+      "customerId": "3",
+      "date": "2026-07-01",
+      "amount": 120000,
+      "id": "NpRm2bLmoRE"
+    },
+    {
+      "sellerId": "3",
+      "customerId": "XhSalZ_H7tw",
+      "date": "2026-07-01",
+      "amount": 130000,
+      "id": "iQ41M9xS49E"
+    },
+    {
+      "sellerId": "3",
+      "customerId": "1",
+      "date": "2026-07-01",
+      "amount": 120000,
+      "id": "PobhK4ej6k8"
+    },
+    {
+      "sellerId": "1",
+      "customerId": "XhSalZ_H7tw",
+      "date": "2026-07-01",
+      "amount": 10000,
+      "id": "klHNAONlRe0"
+    },
+    {
+      "sellerId": "2",
+      "customerId": "3",
+      "date": "2026-07-01",
+      "amount": 125000,
+      "id": "hwYOk2gJCyU"
+    }
+  ],
+  "sellers": [
+    {
+      "id": "1",
+      "companyName": "Microsoft",
+      "hqAddress": "Redmond, WA",
+      "isActive": true
+    },
+    {
+      "id": "2",
+      "companyName": "Oracle",
+      "hqAddress": "Austin, TX",
+      "isActive": true
+    },
+    {
+      "id": "3",
+      "companyName": "Facebook",
+      "hqAddress": "Menlo Park, CA",
+      "isActive": true
+    },
+    {
+      "id": "4",
+      "companyName": "Amazon",
+      "hqAddress": "Seattle, WA",
+      "isActive": false
+    },
+    {
+      "companyName": "Microsoft",
+      "hqAddress": "Banja Luka, BiH",
+      "isActive": true,
+      "id": "kYGadnw-r-s"
+    },
+    {
+      "companyName": "Oracle",
+      "hqAddress": "Banja Luka, BiH",
+      "isActive": true,
+      "id": "wTniQa9PjO4"
+    },
+    {
+      "companyName": "Microsoft",
+      "hqAddress": "Banja Luka, BiH",
+      "isActive": true,
+      "id": "uoApTPeN1zM"
+    }
+  ],
+  "customers": [
+    {
+      "name": "Marko",
+      "surname": "Markovic",
+      "address": "Knez Mihailova 2, Beograd",
+      "age": 34,
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "name": "Stefan",
+      "surname": "Gavrilovic",
+      "address": "Bulevar oslobodjenja 12, Novi Sad",
+      "age": 41
+    },
+    {
+      "id": "3",
+      "name": "Nebojsa",
+      "surname": "Kostic",
+      "address": "Gospodska 5, Banja Luka",
+      "age": 29
+    },
+    {
+      "name": "Nemanja",
+      "surname": "Nemanjic",
+      "address": "Vojvode Radomira Putnika 13B, Banja Luka 78000, Bosnia and Herzegovina",
+      "age": 30,
+      "id": "XhSalZ_H7tw"
+    },
+    {
+      "name": "Danijela",
+      "surname": "Obradovic",
+      "address": "Gospodska, Banja Luka",
+      "age": 30,
+      "id": "VjgpkxTOuGQ"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

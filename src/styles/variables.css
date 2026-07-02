@@ -1,0 +1,79 @@
+:root {
+  /* ===== Boje ===== */
+  --color-bg: #f4f5f7;
+  --color-surface: #ffffff;
+  --color-border: #e2e5e9;
+
+  --color-text: #1f2933;
+  --color-text-muted: #7b8794;
+  --color-text-dark: #333333;
+
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-primary-light: #e7f0fe;
+
+  --color-success: #22c55e;
+  --color-success-hover: #16a34a;
+
+  --color-danger: #ef4444;
+  --color-danger-hover: #dc2626;
+
+  --color-row-hover: #f0f4f8;
+  --color-row-selected: #e7f0fe;
+
+  --color-border-strong: #cbd2d9;
+
+  /* ===== Pastelne boje (statusi/dugmad/toast) ===== */
+  --color-green-bg: #d4f3dd;
+  --color-green-border: #5fb87e;
+  --color-green-text: #2f8049;
+
+  --color-yellow-bg: #fbe7bd;
+  --color-yellow-border: #dcae44;
+
+  --color-red-bg: #f7d0d0;
+  --color-red-border: #cf7f7f;
+  --color-red-text: #b04b4b;
+
+  --color-blue-bg: #d9e8fb;
+  --color-blue-border: #6b9fd8;
+  --color-blue-text: #3b6fa8;
+
+  /* ===== Sive nijanse ===== */
+  --color-gray-light: #f0f2f4;
+  --color-gray-border: #9aa2ab;
+  --color-gray-dark: #8b939c;
+  --color-gray-icon: #6b7280;
+  --color-icon-muted: #4b5563;
+  --color-header-bg: #eef1f4;
+
+  /* ===== Razmaci ===== */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* ===== Tipografija ===== */
+  --font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-size-sm: 13px;
+  --font-size-base: 14px;
+  --font-size-lg: 18px;
+  --font-size-xl: 22px;
+
+  /* ===== Ostalo ===== */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+  /* ===== Dimenzije layout-a ===== */
+  --sidebar-width: 110px;
+  --header-height: 140px;
+
+  --z-modal: 1000;
+  --z-toast: 1100;
+}

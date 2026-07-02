@@ -1,0 +1,152 @@
+# Invoice Management App
+
+A single-page application for managing invoices, sellers, and customers. Built with React, HTML, and CSS as a technical assignment.
+
+The app has three pages — **Invoices**, **Sellers**, and **Customers** — each supporting full create, edit, and delete operations against a mock backend.
+
+## Tech Stack
+
+- **React (JavaScript) + Vite** — modern build tooling and dev server.
+- **React Router** — client-side routing, including edit-by-URL.
+- **TanStack Query (React Query) + Axios** — server-state management (fetching, caching, automatic refetch after mutations, loading states).
+- **json-server** — mock REST backend.
+- **CSS Modules** — component-scoped styling with centralized design tokens (CSS variables).
+- **Framer Motion** — row enter/exit animations.
+- **lucide-react** — icons.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+ (developed on Node 22)
+
+### Installation
+
+```bash
+npm install
+```
+
+### Environment
+
+The API base URL is configured via an environment variable. Copy the example file:
+
+```bash
+cp .env.example .env
+```
+
+The default value points to the local mock server:
+
+```
+VITE_API_URL=http://localhost:3001
+```
+
+### Running the app
+
+The app needs two processes: the mock backend (json-server) and the frontend (Vite).
+
+**Option A — one command (recommended):**
+
+```bash
+npm start
+```
+
+This runs both the mock server and the frontend concurrently.
+
+**Option B — two terminals:**
+
+```bash
+# Terminal 1 — mock backend
+npm run server
+
+# Terminal 2 — frontend
+npm run dev
+```
+
+Then open the URL printed by Vite (default: `http://localhost:5173`).
+
+## Available Scripts
+
+- `npm start` — run mock server and frontend together
+- `npm run dev` — frontend only
+- `npm run server` — mock backend only (json-server on port 3001)
+- `npm run build` — production build
+- `npm run preview` — preview the production build
+
+## Project Structure
+
+The project uses a **feature-based** structure. Shared, generic building blocks live in `src/components`, while everything specific to a domain (invoices, sellers, customers) lives under `src/features`.
+
+```
+src/
+├── api/                  # Axios instance + response interceptor
+├── app/                  # App root, router, query client
+├── components/           # Shared generic UI (DataTable, Modal, Toast, Pagination, ...)
+├── features/
+│   ├── invoices/
+│   │   ├── api/          # CRUD calls
+│   │   ├── hooks/        # TanStack Query hooks
+│   │   ├── components/   # Invoice-specific components (form, entity link)
+│   │   ├── validation/   # Pure validation functions
+│   │   └── InvoicesPage.jsx
+│   ├── sellers/          # same shape
+│   └── customers/        # same shape
+├── hooks/                # Shared hooks (pagination, row selection)
+├── layout/               # Sidebar + app layout
+├── styles/               # Global styles and design tokens (variables.css)
+└── utils/                # Formatting helpers, constants
+```
+
+## Data Model
+
+Invoices reference sellers and customers by **ID** (`sellerId`, `customerId`) rather than storing their names directly. Display names are derived by joining against the sellers/customers collections at render time.
+
+This is a deliberate choice: storing references instead of duplicated names avoids data inconsistency (e.g. renaming a seller updates every invoice automatically) and mirrors how a relational database would model these entities.
+
+## Key Features & Decisions
+
+### CRUD with a shared, generic table and modal
+
+`DataTable`, `Modal`, and the form field components are domain-agnostic and reused across all three pages. Each page feeds them a column configuration and its own data, which keeps the three pages consistent and avoids duplicated markup.
+
+### Edit-by-URL
+
+Opening `/invoices/:id` (via the Edit button or by pasting the URL into a new tab) opens the edit modal pre-filled with that record. The URL is the source of truth for the edit state, so both entry points go through the same mechanism. The selected row is highlighted in the table behind the modal.
+
+If the ID in the URL does not exist, the app does not expose anything — it redirects back to the list with a notification. Note that true per-user authorization belongs on the backend; the frontend here reacts correctly to an unavailable resource, and the Axios interceptor centrally handles `401/403` responses, which is the frontend side of that contract.
+
+### Validation
+
+All validation rules from the assignment are implemented as **pure functions** in each feature's `validation/` folder, separated from the UI:
+
+- Invoice amount must be greater than 0
+- Invoice date cannot be in the future
+- An invoice cannot be created with an inactive seller
+- All fields are required
+- A seller or customer that appears on an existing invoice cannot be deleted
+
+Field-level errors are shown **inline** below each input. In addition, a single summary toast notification appears in the top-right corner on an invalid submit (as required), instead of one toast per error — this fulfils the requirement while avoiding a stack of toasts when several fields are invalid. The form stays open so the user does not lose their input.
+
+### Formatting
+
+Amounts and dates are stored in a raw, unformatted form (a number and an ISO date) and formatted only for display. Amounts use the `de-DE` locale (`.` as thousands separator, `,` for decimals) to match the wireframe (e.g. `325.400,00 $`); dates render as `dd.mm.yyyy`.
+
+### Referential integrity on delete
+
+Because json-server does not enforce foreign-key constraints, the app checks referential integrity at the application level before deleting a seller or customer, blocking deletion if the entity is referenced by any invoice.
+
+### Design tokens
+
+Colors, spacing, typography, radii, and layout dimensions are centralized as CSS variables in `styles/variables.css`, so the visual language is consistent and easy to adjust from one place.
+
+## Bonus Features Implemented
+
+- **Client-side pagination** with an adjustable page size
+- **Seller/customer links** on the invoices table that navigate to the related record and highlight it
+- **Multiple row selection** with bulk delete (Edit is enabled only when exactly one row is selected; delete respects referential integrity for every selected row)
+- **Row animations** on add/remove
+- **Loading indicators** during backend communication (both on initial load and during create/edit/delete actions)
+
+## Notes
+
+- Seeded demo data lives in `db.json` so the app shows content immediately on first run.
+- Mock data changes made through the app are written back to `db.json` by json-server and persist across restarts.

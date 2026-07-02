@@ -1,0 +1,15 @@
+.link {
+  color: var(--color-text);
+  font-weight: 400;
+  text-align: left;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.link:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}

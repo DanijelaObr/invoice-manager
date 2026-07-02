@@ -1,0 +1,58 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkboxField {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.checkboxField input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.checkboxField label {
+  font-size: var(--font-size-base);
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.cancelBtn,
+.submitBtn {
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  color: var(--color-text-dark);
+  transition:
+    filter 0.15s,
+    background-color 0.15s;
+}
+
+.cancelBtn {
+  background-color: var(--color-yellow-bg);
+  border: 2px solid var(--color-yellow-border);
+}
+
+.cancelBtn:not(:disabled):hover {
+  filter: brightness(0.97);
+}
+
+.submitBtn {
+  background-color: var(--color-green-bg);
+  border: 2px solid var(--color-green-border);
+}
+
+.submitBtn:not(:disabled):hover {
+  filter: brightness(0.97);
+}
