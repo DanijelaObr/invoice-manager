@@ -123,11 +123,11 @@ function SellersPage() {
     );
   };
 
-  // DELETE — bulk sa provjerom integriteta
+  // DELETE — bulk operation with integrity check
   const handleDelete = () => {
     if (selectedCount === 0) return;
 
-    // Da li je neki od izabranih prodavaca na fakturi?
+    // Is any of the selected sellers linked to an invoice?
     const blocked = selectedIds.filter((id) =>
       invoices.some((inv) => String(inv.sellerId) === String(id)),
     );

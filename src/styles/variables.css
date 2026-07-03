@@ -1,5 +1,5 @@
 :root {
-  /* ===== Boje ===== */
+  /* ===== Colors ===== */
   --color-bg: #f4f5f7;
   --color-surface: #ffffff;
   --color-border: #e2e5e9;
@@ -23,7 +23,7 @@
 
   --color-border-strong: #cbd2d9;
 
-  /* ===== Pastelne boje (statusi/dugmad/toast) ===== */
+  /* ===== Pastel colors (statuses/buttons/toasts) ===== */
   --color-green-bg: #d4f3dd;
   --color-green-border: #5fb87e;
   --color-green-text: #2f8049;
@@ -39,7 +39,7 @@
   --color-blue-border: #6b9fd8;
   --color-blue-text: #3b6fa8;
 
-  /* ===== Sive nijanse ===== */
+  /* ===== Shades of gray ===== */
   --color-gray-light: #f0f2f4;
   --color-gray-border: #9aa2ab;
   --color-gray-dark: #8b939c;
@@ -47,21 +47,21 @@
   --color-icon-muted: #4b5563;
   --color-header-bg: #eef1f4;
 
-  /* ===== Razmaci ===== */
+  /* ===== Spacing ===== */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 24px;
   --space-xl: 32px;
 
-  /* ===== Tipografija ===== */
+  /* ===== Typography ===== */
   --font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-size-sm: 13px;
   --font-size-base: 14px;
   --font-size-lg: 18px;
   --font-size-xl: 22px;
 
-  /* ===== Ostalo ===== */
+  /* ===== Miscellaneous ===== */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
@@ -70,7 +70,7 @@
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
 
-  /* ===== Dimenzije layout-a ===== */
+  /* ===== Layout dimensions ===== */
   --sidebar-width: 110px;
   --header-height: 140px;
 

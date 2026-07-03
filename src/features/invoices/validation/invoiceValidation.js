@@ -18,7 +18,7 @@ export function validateInvoice(values, sellers) {
     errors.amount = 'Amount is required.';
   }
 
-  // Iznos: mora biti validan broj, veći od 0, i razuman (ne beskonačan)
+  // Amount: must be a valid number, greater than 0, and within a reasonable range (not infinite)
   if (
     values.amount !== '' &&
     values.amount !== null &&
@@ -34,7 +34,7 @@ export function validateInvoice(values, sellers) {
     }
   }
 
-  // Datum ne u budućnosti
+  // Date cannot be in the future
   if (values.date) {
     const selectedDate = new Date(values.date);
     if (Number.isNaN(selectedDate.getTime())) {
@@ -50,7 +50,7 @@ export function validateInvoice(values, sellers) {
     }
   }
 
-  // Neaktivan prodavac
+  // Inactive seller
   if (values.sellerId) {
     const seller = sellers.find(
       (s) => String(s.id) === String(values.sellerId),

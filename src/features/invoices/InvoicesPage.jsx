@@ -35,7 +35,7 @@ function InvoicesPage() {
     singleSelectedId,
   } = useRowSelection();
 
-  const { id: editId } = useParams(); // čita :id iz URL-a (/invoices/:id)
+  const { id: editId } = useParams(); // Reads :id from the URL (/invoices/:id)
   const navigate = useNavigate();
   const { showToast } = useToast();
 
@@ -56,7 +56,7 @@ function InvoicesPage() {
     changeItemsPerPage,
   } = usePagination(invoices, ITEMS_PER_PAGE);
 
-  // Faktura koja se uređuje (na osnovu URL :id), tražena u već učitanoj listi
+  // Invoice being edited (based on URL :id), found in the already loaded list
   const invoiceToEdit = editId
     ? invoices.find((inv) => String(inv.id) === String(editId))
     : null;
@@ -64,7 +64,7 @@ function InvoicesPage() {
   const isRowHighlighted = (id) =>
     isSelected(id) || String(id) === String(editId);
 
-  // Ako URL ima :id koji ne postoji (npr. /invoices/999), vrati na listu
+  // If the URL contains a non-existent :id (e.g. /invoices/999), redirect back to the list
   useEffect(() => {
     if (editId && !isLoading && invoices.length > 0 && !invoiceToEdit) {
       showToast('Invoice not found.', 'error');
@@ -124,12 +124,12 @@ function InvoicesPage() {
     });
   };
 
-  // EDIT — otvaranje preko URL-a
+  // EDIT — opened via URL
   const handleEdit = () => {
     if (singleSelectedId) navigate(`/invoices/${singleSelectedId}`);
   };
   const handleCloseEdit = () => {
-    navigate('/invoices'); // zatvaranje = uklanjanje :id iz URL-a
+    navigate('/invoices'); // Closing = remove :id from the URL
   };
 
   const handleEditSubmit = (values) => {
@@ -150,7 +150,7 @@ function InvoicesPage() {
   };
 
   const handleConfirmDelete = async () => {
-    // Obriši sve selektovane redom
+    // Delete all selected items one by one
     const idsToDelete = [...selectedIds];
     let successCount = 0;
 
@@ -232,7 +232,7 @@ function InvoicesPage() {
         />
       </Modal>
 
-      {/* EDIT modal — otvoren kad postoji :id i faktura je pronađena */}
+      {/* EDIT modal — open when :id exists and the invoice is found */}
       <Modal
         isOpen={!!invoiceToEdit}
         onClose={handleCloseEdit}

@@ -4,7 +4,7 @@ import { X } from 'lucide-react';
 import styles from './Modal.module.css';
 
 function Modal({ isOpen, onClose, title, children, width, hideHeader }) {
-  // Zatvaranje na Escape + zaključavanje skrola dok je modal otvoren
+  // Close the modal on Escape and prevent page scrolling while it's open
   useEffect(() => {
     if (!isOpen) return;
 

@@ -1,26 +1,28 @@
-import api from '../../../api/axios';
+import axiosInstance from '../../../api/axiosInstance';
 
 const RESOURCE = '/sellers';
 
-export const sellersApi = {
-  getAll: async () => {
-    const { data } = await api.get(RESOURCE);
-    return data;
-  },
-  getById: async (id) => {
-    const { data } = await api.get(`${RESOURCE}/${id}`);
-    return data;
-  },
-  create: async (seller) => {
-    const { data } = await api.post(RESOURCE, seller);
-    return data;
-  },
-  update: async (id, seller) => {
-    const { data } = await api.put(`${RESOURCE}/${id}`, seller);
-    return data;
-  },
-  remove: async (id) => {
-    await api.delete(`${RESOURCE}/${id}`);
-    return id;
-  },
+export const getAll = async () => {
+  const { data } = await axiosInstance.get(RESOURCE);
+  return data;
+};
+
+export const getById = async (id) => {
+  const { data } = await axiosInstance.get(`${RESOURCE}/${id}`);
+  return data;
+};
+
+export const create = async (seller) => {
+  const { data } = await axiosInstance.post(RESOURCE, seller);
+  return data;
+};
+
+export const update = async (id, seller) => {
+  const { data } = await axiosInstance.put(`${RESOURCE}/${id}`, seller);
+  return data;
+};
+
+export const remove = async (id) => {
+  await axiosInstance.delete(`${RESOURCE}/${id}`);
+  return id;
 };

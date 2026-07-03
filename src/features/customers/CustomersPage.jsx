@@ -127,7 +127,7 @@ function CustomersPage() {
     );
   };
 
-  // DELETE — bulk sa provjerom integriteta
+  // DELETE — bulk operation with integrity validation
   const handleDelete = () => {
     if (selectedCount === 0) return;
 

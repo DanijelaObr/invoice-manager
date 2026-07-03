@@ -5,7 +5,7 @@ function EntityLink({ to, children }) {
   const navigate = useNavigate();
 
   const handleClick = (e) => {
-    e.stopPropagation(); // spriječi selekciju reda fakture
+    e.stopPropagation(); // Disable row selection for invoices
     navigate(to);
   };
 

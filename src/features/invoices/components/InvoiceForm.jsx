@@ -3,6 +3,7 @@ import FormField from '../../../components/FormField/FormField';
 import { validateInvoice } from '../validation/invoiceValidation';
 import fieldStyles from '../../../components/FormField/controls.module.css';
 import styles from './InvoiceForm.module.css';
+import InfoTooltip from '../../../components/InfoTooltip/InfoTooltip';
 
 function InvoiceForm({
   initialValues,
@@ -24,7 +25,7 @@ function InvoiceForm({
 
   const handleChange = (field) => (e) => {
     setValues((prev) => ({ ...prev, [field]: e.target.value }));
-    // Očisti grešku za to polje čim korisnik krene da kuca
+    // Clear field error on user input
     if (errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
@@ -42,7 +43,12 @@ function InvoiceForm({
 
   return (
     <div className={styles.form}>
-      <FormField label="Seller" error={errors.sellerId} htmlFor="sellerId">
+      <FormField
+        label="Seller"
+        labelExtra={<InfoTooltip text="Inactive seller cannot be selected." />}
+        error={errors.sellerId}
+        htmlFor="sellerId"
+      >
         <select
           id="sellerId"
           className={`${fieldStyles.select} ${errors.sellerId ? fieldStyles.inputError : ''}`}
@@ -51,7 +57,7 @@ function InvoiceForm({
         >
           <option value="">— Select a seller —</option>
           {sellers.map((s) => (
-            <option key={s.id} value={s.id}>
+            <option key={s.id} value={s.id} disabled={!s.isActive}>
               {s.companyName} {!s.isActive ? '(inactive)' : ''}
             </option>
           ))}
@@ -82,6 +88,7 @@ function InvoiceForm({
         <input
           id="date"
           type="date"
+          max={new Date().toISOString().split('T')[0]}
           className={`${fieldStyles.input} ${errors.date ? fieldStyles.inputError : ''}`}
           value={values.date}
           onChange={handleChange('date')}

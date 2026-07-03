@@ -11,6 +11,13 @@
   color: var(--color-text);
 }
 
+.labelRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-xs);
+}
+
 .error {
   font-size: var(--font-size-sm);
   color: var(--color-danger);

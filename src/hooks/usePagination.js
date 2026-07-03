@@ -24,7 +24,7 @@ export function usePagination(data, initialItemsPerPage = ITEMS_PER_PAGE) {
 
   const changeItemsPerPage = (size) => {
     setItemsPerPage(size);
-    setCurrentPage(1); // vrati na prvu stranicu kad se promijeni veličina
+    setCurrentPage(1); // Reset to first page on page size change
   };
 
   return {

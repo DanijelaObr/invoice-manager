@@ -1,15 +1,18 @@
 import styles from './FormField.module.css';
 
-function FormField({ label, error, children, htmlFor }) {
+const FormField = ({ label, labelExtra, error, children, htmlFor }) => {
   return (
     <div className={styles.field}>
-      <label className={styles.label} htmlFor={htmlFor}>
-        {label}
-      </label>
+      <div className={styles.labelRow}>
+        <label className={styles.label} htmlFor={htmlFor}>
+          {label}
+        </label>
+        {labelExtra}
+      </div>
       {children}
       {error && <span className={styles.error}>{error}</span>}
     </div>
   );
-}
+};
 
 export default FormField;

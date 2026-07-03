@@ -1,30 +1,28 @@
-import api from '../../../api/axios';
+import axiosInstance from '../../../api/axiosInstance';
 
 const RESOURCE = '/invoices';
 
-export const invoicesApi = {
-  getAll: async () => {
-    const { data } = await api.get(RESOURCE);
-    return data;
-  },
+export const getAll = async () => {
+  const { data } = await axiosInstance.get(RESOURCE);
+  return data;
+};
 
-  getById: async (id) => {
-    const { data } = await api.get(`${RESOURCE}/${id}`);
-    return data;
-  },
+export const getById = async (id) => {
+  const { data } = await axiosInstance.get(`${RESOURCE}/${id}`);
+  return data;
+};
 
-  create: async (invoice) => {
-    const { data } = await api.post(RESOURCE, invoice);
-    return data;
-  },
+export const create = async (invoice) => {
+  const { data } = await axiosInstance.post(RESOURCE, invoice);
+  return data;
+};
 
-  update: async (id, invoice) => {
-    const { data } = await api.put(`${RESOURCE}/${id}`, invoice);
-    return data;
-  },
+export const update = async (id, invoice) => {
+  const { data } = await axiosInstance.put(`${RESOURCE}/${id}`, invoice);
+  return data;
+};
 
-  remove: async (id) => {
-    await api.delete(`${RESOURCE}/${id}`);
-    return id;
-  },
+export const remove = async (id) => {
+  await axiosInstance.delete(`${RESOURCE}/${id}`);
+  return id;
 };

@@ -1,21 +1,21 @@
 import axios from 'axios';
 
-const api = axios.create({
+const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3001',
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Interceptor odgovora — centralizovano hvatanje grešaka pristupa
-api.interceptors.response.use(
+// Response interceptor — centralized handling of access errors
+axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     const status = error.response?.status;
 
-    // 401 = neautentifikovan, 403 = nema dozvolu, 404 = ne postoji
+    // 401 = unauthenticated, 403 = forbidden
     if (status === 401 || status === 403) {
-      // Frontend ne smije da prikaže ništa — redirektujemo na početnu ili na login
+      // The frontend must not display anything — redirect to the home page
       window.location.href = '/invoices';
     }
 
@@ -23,4 +23,4 @@ api.interceptors.response.use(
   },
 );
 
-export default api;
+export default axiosInstance;

@@ -4,7 +4,7 @@ export function validateSeller(values) {
   const companyName = values.companyName?.trim() ?? '';
   const hqAddress = values.hqAddress?.trim() ?? '';
 
-  // Naziv kompanije
+  // Company name
   if (companyName === '') {
     errors.companyName = 'Company name is required.';
   } else if (companyName.length < 2) {
@@ -15,7 +15,7 @@ export function validateSeller(values) {
     errors.companyName = 'Company name must contain letters.';
   }
 
-  // Adresa sjedišta
+  // HQ address
   if (hqAddress === '') {
     errors.hqAddress = 'HQ address is required.';
   } else if (hqAddress.length < 5) {

@@ -1,19 +1,24 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { customersApi } from '../api/customersApi';
+import {
+  getAll as getCustomers,
+  create as createCustomer,
+  update as updateCustomer,
+  remove as removeCustomer,
+} from '../api/customersApi';
 
 const QUERY_KEY = ['customers'];
 
 export function useCustomers() {
   return useQuery({
     queryKey: QUERY_KEY,
-    queryFn: customersApi.getAll,
+    queryFn: getCustomers,
   });
 }
 
 export function useCreateCustomer() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: customersApi.create,
+    mutationFn: createCustomer,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: QUERY_KEY }),
   });
 }
@@ -21,7 +26,7 @@ export function useCreateCustomer() {
 export function useUpdateCustomer() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ id, data }) => customersApi.update(id, data),
+    mutationFn: ({ id, data }) => updateCustomer(id, data),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: QUERY_KEY }),
   });
 }
@@ -29,7 +34,7 @@ export function useUpdateCustomer() {
 export function useDeleteCustomer() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: customersApi.remove,
+    mutationFn: removeCustomer,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: QUERY_KEY }),
   });
 }

@@ -1,4 +1,4 @@
-// Iznos: 325400 → "325.400,00 $" (tačka = hiljade, zapeta = decimale)
+// Amount: 325400 → "325.400,00 $" (dot = thousands separator, comma = decimals)
 export function formatAmount(amount) {
   return (
     new Intl.NumberFormat('de-DE', {
@@ -8,7 +8,7 @@ export function formatAmount(amount) {
   );
 }
 
-// Datum: "2022-10-10" → "10.10.2022"
+// Date: "2022-10-10" → "10.10.2022"
 export function formatDate(isoDate) {
   const date = new Date(isoDate);
   const day = String(date.getDate()).padStart(2, '0');

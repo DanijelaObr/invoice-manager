@@ -1,43 +1,48 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { invoicesApi } from '../api/invoicesApi';
+import {
+  getAll as getInvoices,
+  create as createInvoice,
+  update as updateInvoice,
+  remove as removeInvoice,
+} from '../api/invoicesApi';
 
 const QUERY_KEY = ['invoices'];
 
-// Čitanje svih faktura
+// Fetch all invoices
 export function useInvoices() {
   return useQuery({
     queryKey: QUERY_KEY,
-    queryFn: invoicesApi.getAll,
+    queryFn: getInvoices,
   });
 }
 
-// Kreiranje
+// Create
 export function useCreateInvoice() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: invoicesApi.create,
+    mutationFn: createInvoice,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEY });
     },
   });
 }
 
-// Izmjena
+// Update
 export function useUpdateInvoice() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ id, data }) => invoicesApi.update(id, data),
+    mutationFn: ({ id, data }) => updateInvoice(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEY });
     },
   });
 }
 
-// Brisanje
+// Delete
 export function useDeleteInvoice() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: invoicesApi.remove,
+    mutationFn: removeInvoice,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEY });
     },

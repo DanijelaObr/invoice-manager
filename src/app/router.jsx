@@ -9,11 +9,12 @@ export const router = createBrowserRouter([
     path: '/',
     element: <AppLayout />,
     children: [
-      // Kada se otvori "/", preusmjeri na "/invoices"
+      // When the user opens "/", redirect to "/invoices"
       { index: true, element: <Navigate to="/invoices" replace /> },
 
       { path: 'invoices', element: <InvoicesPage /> },
-      // Edit preko URL-a: "/invoices/1" otvara istu stranicu, ali sa id-em
+
+      // Editing via URL: "/invoices/1" opens the same page with the invoice ID
       { path: 'invoices/:id', element: <InvoicesPage /> },
 
       { path: 'sellers', element: <SellersPage /> },
@@ -22,7 +23,7 @@ export const router = createBrowserRouter([
       { path: 'customers', element: <CustomersPage /> },
       { path: 'customers/:id', element: <CustomersPage /> },
 
-      // Bilo koji nepostojeći URL → nazad na invoices
+      // Any non-existent URL → redirect back to invoices
       { path: '*', element: <Navigate to="/invoices" replace /> },
     ],
   },

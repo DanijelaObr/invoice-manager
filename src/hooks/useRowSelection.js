@@ -15,7 +15,7 @@ export function useRowSelection() {
   };
 
   const selectRow = (id) => {
-    setSelectedIds([id]); // uvijek selektuje samo taj red
+    setSelectedIds([id]); // Always select only that row
   };
 
   const clearSelection = () => setSelectedIds([]);

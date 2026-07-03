@@ -16,7 +16,7 @@ export function ToastProvider({ children }) {
     (message, type = 'info') => {
       const id = ++idCounter;
       setToasts((prev) => [...prev, { id, message, type }]);
-      // Automatsko uklanjanje nakon 3.5s
+      // Automatically dismiss after 3.5 seconds
       setTimeout(() => removeToast(id), 3500);
     },
     [removeToast],
@@ -30,7 +30,7 @@ export function ToastProvider({ children }) {
   );
 }
 
-// Hook za korištenje iz bilo koje komponente
+// Custom hook for use in any component
 export function useToast() {
   const context = useContext(ToastContext);
   if (!context) {

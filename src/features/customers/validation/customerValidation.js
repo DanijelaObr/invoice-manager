@@ -5,7 +5,7 @@ export function validateCustomer(values) {
   const surname = values.surname?.trim() ?? '';
   const address = values.address?.trim() ?? '';
 
-  // Ime
+  // First name
   if (name === '') {
     errors.name = 'First name is required.';
   } else if (name.length < 2) {
@@ -16,7 +16,7 @@ export function validateCustomer(values) {
     errors.name = 'First name must contain letters.';
   }
 
-  // Prezime
+  // Last name
   if (surname === '') {
     errors.surname = 'Last name is required.';
   } else if (surname.length < 2) {
@@ -27,7 +27,7 @@ export function validateCustomer(values) {
     errors.surname = 'Last name must contain letters.';
   }
 
-  // Adresa
+  // Address
   if (address === '') {
     errors.address = 'Address is required.';
   } else if (address.length < 5) {
@@ -38,7 +38,7 @@ export function validateCustomer(values) {
     errors.address = 'Address must contain letters.';
   }
 
-  // Godine
+  // Age
   if (values.age === '' || values.age === null || values.age === undefined) {
     errors.age = 'Age is required.';
   } else {
