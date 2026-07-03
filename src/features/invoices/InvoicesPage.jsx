@@ -1,26 +1,26 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import PageHeader from "../../components/PageHeader/PageHeader";
-import DataTable from "../../components/DataTable/DataTable";
-import Spinner from "../../components/Spinner/Spinner";
-import Modal from "../../components/Modal/Modal";
-import InvoiceForm from "./components/InvoiceForm";
-import { useToast } from "../../components/Toast/ToastContext";
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import PageHeader from '../../components/PageHeader/PageHeader';
+import DataTable from '../../components/DataTable/DataTable';
+import Spinner from '../../components/Spinner/Spinner';
+import Modal from '../../components/Modal/Modal';
+import InvoiceForm from './components/InvoiceForm';
+import { useToast } from '../../components/Toast/ToastContext';
 import {
   useInvoices,
   useCreateInvoice,
   useUpdateInvoice,
   useDeleteInvoice,
-} from "./hooks/useInvoices";
-import { useSellers } from "../sellers/hooks/useSellers";
-import { useCustomers } from "../customers/hooks/useCustomers";
-import { formatAmount, formatDate } from "../../utils/format";
-import ConfirmDialog from "../../components/ConfirmDialog/ConfirmDialog";
-import Pagination from "../../components/Pagination/Pagination";
-import { usePagination } from "../../hooks/usePagination";
-import { ITEMS_PER_PAGE } from "../../utils/constants";
-import EntityLink from "./components/EntityLink";
-import { useRowSelection } from "../../hooks/useRowSelection";
+} from './hooks/useInvoices';
+import { useSellers } from '../sellers/hooks/useSellers';
+import { useCustomers } from '../customers/hooks/useCustomers';
+import { formatAmount, formatDate } from '../../utils/format';
+import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog';
+import Pagination from '../../components/Pagination/Pagination';
+import { usePagination } from '../../hooks/usePagination';
+import { ITEMS_PER_PAGE } from '../../utils/constants';
+import EntityLink from './components/EntityLink';
+import { useRowSelection } from '../../hooks/useRowSelection';
 
 function InvoicesPage() {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
@@ -67,22 +67,22 @@ function InvoicesPage() {
   // Ako URL ima :id koji ne postoji (npr. /invoices/999), vrati na listu
   useEffect(() => {
     if (editId && !isLoading && invoices.length > 0 && !invoiceToEdit) {
-      showToast("Invoice not found.", "error");
-      navigate("/invoices", { replace: true });
+      showToast('Invoice not found.', 'error');
+      navigate('/invoices', { replace: true });
     }
   }, [editId, isLoading, invoices.length, invoiceToEdit, navigate, showToast]);
 
   const getSellerName = (id) =>
-    sellers.find((s) => String(s.id) === String(id))?.companyName ?? "—";
+    sellers.find((s) => String(s.id) === String(id))?.companyName ?? '—';
   const getCustomerName = (id) => {
     const c = customers.find((c) => String(c.id) === String(id));
-    return c ? `${c.name} ${c.surname}` : "—";
+    return c ? `${c.name} ${c.surname}` : '—';
   };
 
   const columns = [
     {
-      key: "seller",
-      header: "Seller",
+      key: 'seller',
+      header: 'Seller',
       render: (row) => (
         <EntityLink to={`/sellers?highlight=${row.sellerId}`}>
           {getSellerName(row.sellerId)}
@@ -90,18 +90,18 @@ function InvoicesPage() {
       ),
     },
     {
-      key: "customer",
-      header: "Customer",
+      key: 'customer',
+      header: 'Customer',
       render: (row) => (
         <EntityLink to={`/customers?highlight=${row.customerId}`}>
           {getCustomerName(row.customerId)}
         </EntityLink>
       ),
     },
-    { key: "date", header: "Date", render: (row) => formatDate(row.date) },
+    { key: 'date', header: 'Date', render: (row) => formatDate(row.date) },
     {
-      key: "amount",
-      header: "Amount",
+      key: 'amount',
+      header: 'Amount',
       render: (row) => formatAmount(row.amount),
     },
   ];
@@ -117,10 +117,10 @@ function InvoicesPage() {
   const handleCreateSubmit = (values) => {
     createInvoice.mutate(values, {
       onSuccess: () => {
-        showToast("Invoice created successfully.", "success");
+        showToast('Invoice created successfully.', 'success');
         setIsCreateOpen(false);
       },
-      onError: () => showToast("Error creating invoice.", "error"),
+      onError: () => showToast('Error creating invoice.', 'error'),
     });
   };
 
@@ -129,7 +129,7 @@ function InvoicesPage() {
     if (singleSelectedId) navigate(`/invoices/${singleSelectedId}`);
   };
   const handleCloseEdit = () => {
-    navigate("/invoices"); // zatvaranje = uklanjanje :id iz URL-a
+    navigate('/invoices'); // zatvaranje = uklanjanje :id iz URL-a
   };
 
   const handleEditSubmit = (values) => {
@@ -137,10 +137,10 @@ function InvoicesPage() {
       { id: editId, data: { ...values, id: editId } },
       {
         onSuccess: () => {
-          showToast("Invoice updated successfully.", "success");
-          navigate("/invoices");
+          showToast('Invoice updated successfully.', 'success');
+          navigate('/invoices');
         },
-        onError: () => showToast("Error updating invoice.", "error"),
+        onError: () => showToast('Error updating invoice.', 'error'),
       },
     );
   };
@@ -166,13 +166,13 @@ function InvoicesPage() {
     if (successCount > 0) {
       showToast(
         successCount === 1
-          ? "Invoice deleted."
+          ? 'Invoice deleted.'
           : `Deleted invoices: ${successCount}.`,
-        "success",
+        'success',
       );
     }
     if (successCount < idsToDelete.length) {
-      showToast("Some invoices were not deleted.", "error");
+      showToast('Some invoices were not deleted.', 'error');
     }
 
     setIsConfirmOpen(false);
@@ -190,7 +190,7 @@ function InvoicesPage() {
         isDeleteDisabled={selectedCount === 0}
       />
 
-      <div style={{ marginTop: "var(--header-height)" }}>
+      <div style={{ marginTop: 'var(--header-height)' }}>
         {isLoading ? (
           <Spinner />
         ) : (
@@ -227,7 +227,7 @@ function InvoicesPage() {
           isSubmitting={createInvoice.isPending}
           submitLabel="Create"
           onValidationError={() =>
-            showToast("Please fix the errors in the form.", "error")
+            showToast('Please fix the errors in the form.', 'error')
           }
         />
       </Modal>
@@ -258,7 +258,7 @@ function InvoicesPage() {
         title="Delete an invoice"
         message={
           selectedCount === 1
-            ? "Are you sure you want to delete this invoice? This action is irreversible."
+            ? 'Are you sure you want to delete this invoice? This action is irreversible.'
             : `You are about to delete ${selectedCount} invoices. This action is irreversible.`
         }
         isProcessing={deleteInvoice.isPending}

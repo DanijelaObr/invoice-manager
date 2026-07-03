@@ -1,5 +1,5 @@
-import { createContext, useContext, useState, useCallback } from "react";
-import ToastContainer from "./ToastContainer";
+import { createContext, useContext, useState, useCallback } from 'react';
+import ToastContainer from './ToastContainer';
 
 const ToastContext = createContext(null);
 
@@ -13,7 +13,7 @@ export function ToastProvider({ children }) {
   }, []);
 
   const showToast = useCallback(
-    (message, type = "info") => {
+    (message, type = 'info') => {
       const id = ++idCounter;
       setToasts((prev) => [...prev, { id, message, type }]);
       // Automatsko uklanjanje nakon 3.5s
@@ -34,7 +34,7 @@ export function ToastProvider({ children }) {
 export function useToast() {
   const context = useContext(ToastContext);
   if (!context) {
-    throw new Error("useToast mora biti unutar ToastProvider-a");
+    throw new Error('useToast mora biti unutar ToastProvider-a');
   }
   return context;
 }

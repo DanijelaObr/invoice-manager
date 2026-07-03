@@ -1,7 +1,7 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { sellersApi } from "../api/sellersApi";
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { sellersApi } from '../api/sellersApi';
 
-const QUERY_KEY = ["sellers"];
+const QUERY_KEY = ['sellers'];
 
 export function useSellers() {
   return useQuery({

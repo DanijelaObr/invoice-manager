@@ -1,7 +1,7 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { customersApi } from "../api/customersApi";
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { customersApi } from '../api/customersApi';
 
-const QUERY_KEY = ["customers"];
+const QUERY_KEY = ['customers'];
 
 export function useCustomers() {
   return useQuery({

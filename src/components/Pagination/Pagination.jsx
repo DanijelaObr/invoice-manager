@@ -1,5 +1,5 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import styles from "./Pagination.module.css";
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import styles from './Pagination.module.css';
 
 const PAGE_SIZE_OPTIONS = [5, 10, 20];
 
@@ -36,7 +36,7 @@ function Pagination({
                   : styles.pageBtn
               }
               onClick={() => onPageChange(page)}
-              aria-current={page === currentPage ? "page" : undefined}
+              aria-current={page === currentPage ? 'page' : undefined}
             >
               {page}
             </button>

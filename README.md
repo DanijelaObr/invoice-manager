@@ -23,7 +23,7 @@ The app has three pages — **Invoices**, **Sellers**, and **Customers** — eac
 ### Installation
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### Environment
@@ -47,7 +47,7 @@ The app needs two processes: the mock backend (json-server) and the frontend (Vi
 **Option A — one command (recommended):**
 
 ```bash
-npm start
+pnpm start
 ```
 
 This runs both the mock server and the frontend concurrently.
@@ -56,21 +56,21 @@ This runs both the mock server and the frontend concurrently.
 
 ```bash
 # Terminal 1 — mock backend
-npm run server
+pnpm run server
 
 # Terminal 2 — frontend
-npm run dev
+pnpm run dev
 ```
 
 Then open the URL printed by Vite (default: `http://localhost:5173`).
 
 ## Available Scripts
 
-- `npm start` — run mock server and frontend together
-- `npm run dev` — frontend only
-- `npm run server` — mock backend only (json-server on port 3001)
-- `npm run build` — production build
-- `npm run preview` — preview the production build
+- `pnpm start` — run mock server and frontend together
+- `pnpm run dev` — frontend only
+- `pnpm run server` — mock backend only (json-server on port 3001)
+- `pnpm run build` — production build
+- `pnpm run preview` — preview the production build
 
 ## Project Structure
 

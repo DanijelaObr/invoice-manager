@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import styles from "./EntityLink.module.css";
+import { useNavigate } from 'react-router-dom';
+import styles from './EntityLink.module.css';
 
 function EntityLink({ to, children }) {
   const navigate = useNavigate();

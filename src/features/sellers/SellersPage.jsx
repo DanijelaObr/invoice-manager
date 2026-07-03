@@ -1,23 +1,23 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate, useSearchParams } from "react-router-dom";
-import PageHeader from "../../components/PageHeader/PageHeader";
-import DataTable from "../../components/DataTable/DataTable";
-import Spinner from "../../components/Spinner/Spinner";
-import Modal from "../../components/Modal/Modal";
-import ConfirmDialog from "../../components/ConfirmDialog/ConfirmDialog";
-import SellerForm from "./components/SellerForm";
-import { useToast } from "../../components/Toast/ToastContext";
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
+import PageHeader from '../../components/PageHeader/PageHeader';
+import DataTable from '../../components/DataTable/DataTable';
+import Spinner from '../../components/Spinner/Spinner';
+import Modal from '../../components/Modal/Modal';
+import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog';
+import SellerForm from './components/SellerForm';
+import { useToast } from '../../components/Toast/ToastContext';
 import {
   useSellers,
   useCreateSeller,
   useUpdateSeller,
   useDeleteSeller,
-} from "./hooks/useSellers";
-import { useInvoices } from "../invoices/hooks/useInvoices";
-import Pagination from "../../components/Pagination/Pagination";
-import { usePagination } from "../../hooks/usePagination";
-import { ITEMS_PER_PAGE } from "../../utils/constants";
-import { useRowSelection } from "../../hooks/useRowSelection";
+} from './hooks/useSellers';
+import { useInvoices } from '../invoices/hooks/useInvoices';
+import Pagination from '../../components/Pagination/Pagination';
+import { usePagination } from '../../hooks/usePagination';
+import { ITEMS_PER_PAGE } from '../../utils/constants';
+import { useRowSelection } from '../../hooks/useRowSelection';
 
 function SellersPage() {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
@@ -45,7 +45,7 @@ function SellersPage() {
   const deleteSeller = useDeleteSeller();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const highlightId = searchParams.get("highlight");
+  const highlightId = searchParams.get('highlight');
 
   const isRowHighlighted = (id) =>
     isSelected(id) || String(id) === String(editId);
@@ -73,18 +73,18 @@ function SellersPage() {
 
   useEffect(() => {
     if (editId && !isLoading && sellers.length > 0 && !sellerToEdit) {
-      showToast("Seller not found.", "error");
-      navigate("/sellers", { replace: true });
+      showToast('Seller not found.', 'error');
+      navigate('/sellers', { replace: true });
     }
   }, [editId, isLoading, sellers.length, sellerToEdit, navigate, showToast]);
 
   const columns = [
-    { key: "companyName", header: "Company" },
-    { key: "hqAddress", header: "HQ Address" },
+    { key: 'companyName', header: 'Company' },
+    { key: 'hqAddress', header: 'HQ Address' },
     {
-      key: "isActive",
-      header: "Status",
-      render: (row) => (row.isActive ? "Active" : "Inactive"),
+      key: 'isActive',
+      header: 'Status',
+      render: (row) => (row.isActive ? 'Active' : 'Inactive'),
     },
   ];
 
@@ -98,10 +98,10 @@ function SellersPage() {
   const handleCreateSubmit = (values) => {
     createSeller.mutate(values, {
       onSuccess: () => {
-        showToast("Seller created successfully.", "success");
+        showToast('Seller created successfully.', 'success');
         setIsCreateOpen(false);
       },
-      onError: () => showToast("Error creating seller.", "error"),
+      onError: () => showToast('Error creating seller.', 'error'),
     });
   };
 
@@ -109,16 +109,16 @@ function SellersPage() {
   const handleEdit = () => {
     if (singleSelectedId) navigate(`/sellers/${singleSelectedId}`);
   };
-  const handleCloseEdit = () => navigate("/sellers");
+  const handleCloseEdit = () => navigate('/sellers');
   const handleEditSubmit = (values) => {
     updateSeller.mutate(
       { id: editId, data: { ...values, id: editId } },
       {
         onSuccess: () => {
-          showToast("Seller edited successfully.", "success");
-          navigate("/sellers");
+          showToast('Seller edited successfully.', 'success');
+          navigate('/sellers');
         },
-        onError: () => showToast("Error editing seller.", "error"),
+        onError: () => showToast('Error editing seller.', 'error'),
       },
     );
   };
@@ -134,8 +134,8 @@ function SellersPage() {
 
     if (blocked.length > 0) {
       showToast(
-        "Some of the selected sellers are on the invoices and cannot be deleted.",
-        "error",
+        'Some of the selected sellers are on the invoices and cannot be deleted.',
+        'error',
       );
       return;
     }
@@ -159,13 +159,13 @@ function SellersPage() {
     if (successCount > 0) {
       showToast(
         successCount === 1
-          ? "Seller deleted."
+          ? 'Seller deleted.'
           : `Deleted sellers: ${successCount}.`,
-        "success",
+        'success',
       );
     }
     if (successCount < idsToDelete.length) {
-      showToast("Some sellers were not deleted.", "error");
+      showToast('Some sellers were not deleted.', 'error');
     }
 
     setIsConfirmOpen(false);
@@ -183,7 +183,7 @@ function SellersPage() {
         isDeleteDisabled={selectedCount === 0}
       />
 
-      <div style={{ marginTop: "var(--header-height)" }}>
+      <div style={{ marginTop: 'var(--header-height)' }}>
         {isLoading ? (
           <Spinner />
         ) : (
@@ -217,7 +217,7 @@ function SellersPage() {
           isSubmitting={createSeller.isPending}
           submitLabel="Create"
           onValidationError={() =>
-            showToast("Please fix the errors in the form.", "error")
+            showToast('Please fix the errors in the form.', 'error')
           }
         />
       </Modal>
@@ -245,7 +245,7 @@ function SellersPage() {
         title="Delete seller"
         message={
           selectedCount === 1
-            ? "Are you sure you want to delete this seller? This action is irreversible."
+            ? 'Are you sure you want to delete this seller? This action is irreversible.'
             : `You are about to delete ${selectedCount} sellers. This action is irreversible.`
         }
         isProcessing={deleteSeller.isPending}

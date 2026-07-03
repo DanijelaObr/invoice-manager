@@ -1,6 +1,6 @@
-import styles from "./Spinner.module.css";
+import styles from './Spinner.module.css';
 
-function Spinner({ label = "Loading..." }) {
+function Spinner({ label = 'Loading...' }) {
   return (
     <div className={styles.wrapper} role="status" aria-live="polite">
       <div className={styles.spinner} />

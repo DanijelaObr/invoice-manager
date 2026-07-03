@@ -1,6 +1,6 @@
-import api from "../../../api/axios";
+import api from '../../../api/axios';
 
-const RESOURCE = "/customers";
+const RESOURCE = '/customers';
 
 export const customersApi = {
   getAll: async () => {

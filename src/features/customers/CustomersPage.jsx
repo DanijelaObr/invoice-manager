@@ -1,23 +1,23 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate, useSearchParams } from "react-router-dom";
-import PageHeader from "../../components/PageHeader/PageHeader";
-import DataTable from "../../components/DataTable/DataTable";
-import Spinner from "../../components/Spinner/Spinner";
-import Modal from "../../components/Modal/Modal";
-import ConfirmDialog from "../../components/ConfirmDialog/ConfirmDialog";
-import CustomerForm from "./components/CustomerForm";
-import { useToast } from "../../components/Toast/ToastContext";
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
+import PageHeader from '../../components/PageHeader/PageHeader';
+import DataTable from '../../components/DataTable/DataTable';
+import Spinner from '../../components/Spinner/Spinner';
+import Modal from '../../components/Modal/Modal';
+import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog';
+import CustomerForm from './components/CustomerForm';
+import { useToast } from '../../components/Toast/ToastContext';
 import {
   useCustomers,
   useCreateCustomer,
   useUpdateCustomer,
   useDeleteCustomer,
-} from "./hooks/useCustomers";
-import { useInvoices } from "../invoices/hooks/useInvoices";
-import Pagination from "../../components/Pagination/Pagination";
-import { usePagination } from "../../hooks/usePagination";
-import { ITEMS_PER_PAGE } from "../../utils/constants";
-import { useRowSelection } from "../../hooks/useRowSelection";
+} from './hooks/useCustomers';
+import { useInvoices } from '../invoices/hooks/useInvoices';
+import Pagination from '../../components/Pagination/Pagination';
+import { usePagination } from '../../hooks/usePagination';
+import { ITEMS_PER_PAGE } from '../../utils/constants';
+import { useRowSelection } from '../../hooks/useRowSelection';
 
 function CustomersPage() {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
@@ -45,7 +45,7 @@ function CustomersPage() {
   const deleteCustomer = useDeleteCustomer();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const highlightId = searchParams.get("highlight");
+  const highlightId = searchParams.get('highlight');
 
   const isRowHighlighted = (id) =>
     isSelected(id) || String(id) === String(editId);
@@ -73,8 +73,8 @@ function CustomersPage() {
 
   useEffect(() => {
     if (editId && !isLoading && customers.length > 0 && !customerToEdit) {
-      showToast("Customer not found.", "error");
-      navigate("/customers", { replace: true });
+      showToast('Customer not found.', 'error');
+      navigate('/customers', { replace: true });
     }
   }, [
     editId,
@@ -86,10 +86,10 @@ function CustomersPage() {
   ]);
 
   const columns = [
-    { key: "name", header: "First name" },
-    { key: "surname", header: "Last name" },
-    { key: "address", header: "Address" },
-    { key: "age", header: "Age" },
+    { key: 'name', header: 'First name' },
+    { key: 'surname', header: 'Last name' },
+    { key: 'address', header: 'Address' },
+    { key: 'age', header: 'Age' },
   ];
 
   const handleRowClick = (id) => {
@@ -102,10 +102,10 @@ function CustomersPage() {
   const handleCreateSubmit = (values) => {
     createCustomer.mutate(values, {
       onSuccess: () => {
-        showToast("Customer created successfully", "success");
+        showToast('Customer created successfully', 'success');
         setIsCreateOpen(false);
       },
-      onError: () => showToast("Error creating customer.", "error"),
+      onError: () => showToast('Error creating customer.', 'error'),
     });
   };
 
@@ -113,16 +113,16 @@ function CustomersPage() {
   const handleEdit = () => {
     if (singleSelectedId) navigate(`/customers/${singleSelectedId}`);
   };
-  const handleCloseEdit = () => navigate("/customers");
+  const handleCloseEdit = () => navigate('/customers');
   const handleEditSubmit = (values) => {
     updateCustomer.mutate(
       { id: editId, data: { ...values, id: editId } },
       {
         onSuccess: () => {
-          showToast("Customer edited successfully.", "success");
-          navigate("/customers");
+          showToast('Customer edited successfully.', 'success');
+          navigate('/customers');
         },
-        onError: () => showToast("Error ediitng customer.", "error"),
+        onError: () => showToast('Error ediitng customer.', 'error'),
       },
     );
   };
@@ -137,8 +137,8 @@ function CustomersPage() {
 
     if (blocked.length > 0) {
       showToast(
-        "Some of the selected customers are on invoices and cannot be deleted.",
-        "error",
+        'Some of the selected customers are on invoices and cannot be deleted.',
+        'error',
       );
       return;
     }
@@ -164,13 +164,13 @@ function CustomersPage() {
     if (successCount > 0) {
       showToast(
         successCount === 1
-          ? "Customer deleted."
+          ? 'Customer deleted.'
           : `Deleted customers: ${successCount}.`,
-        "success",
+        'success',
       );
     }
     if (failedIds.length > 0) {
-      showToast(`Failed to delete ${failedIds.length} customer(s).`, "error");
+      showToast(`Failed to delete ${failedIds.length} customer(s).`, 'error');
     }
 
     setIsConfirmOpen(false);
@@ -188,7 +188,7 @@ function CustomersPage() {
         isDeleteDisabled={selectedCount === 0}
       />
 
-      <div style={{ marginTop: "var(--header-height)" }}>
+      <div style={{ marginTop: 'var(--header-height)' }}>
         {isLoading ? (
           <Spinner />
         ) : (
@@ -222,7 +222,7 @@ function CustomersPage() {
           isSubmitting={createCustomer.isPending}
           submitLabel="Create"
           onValidationError={() =>
-            showToast("Please fix the errors in the form.", "error")
+            showToast('Please fix the errors in the form.', 'error')
           }
         />
       </Modal>
@@ -250,7 +250,7 @@ function CustomersPage() {
         title="Delete customer"
         message={
           selectedCount === 1
-            ? "Are you sure you want to delete this customer? This action is irreversible."
+            ? 'Are you sure you want to delete this customer? This action is irreversible.'
             : `You are about to delete ${selectedCount} customers. This action is irreversible.`
         }
         isProcessing={deleteCustomer.isPending}

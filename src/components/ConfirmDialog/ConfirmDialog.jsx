@@ -1,13 +1,13 @@
-import Modal from "../Modal/Modal";
-import styles from "./ConfirmDialog.module.css";
+import Modal from '../Modal/Modal';
+import styles from './ConfirmDialog.module.css';
 
 function ConfirmDialog({
   isOpen,
   onConfirm,
   onCancel,
-  title = "Are you sure?",
+  title = 'Are you sure?',
   message,
-  confirmLabel = "Delete",
+  confirmLabel = 'Delete',
   isProcessing = false,
 }) {
   return (
@@ -30,7 +30,7 @@ function ConfirmDialog({
             onClick={onConfirm}
             disabled={isProcessing}
           >
-            {isProcessing ? "Deleting..." : confirmLabel}
+            {isProcessing ? 'Deleting...' : confirmLabel}
           </button>
         </div>
       </div>

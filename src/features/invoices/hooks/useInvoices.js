@@ -1,7 +1,7 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { invoicesApi } from "../api/invoicesApi";
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { invoicesApi } from '../api/invoicesApi';
 
-const QUERY_KEY = ["invoices"];
+const QUERY_KEY = ['invoices'];
 
 // Čitanje svih faktura
 export function useInvoices() {

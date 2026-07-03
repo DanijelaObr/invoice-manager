@@ -1,8 +1,8 @@
-import { useState } from "react";
-import FormField from "../../../components/FormField/FormField";
-import { validateInvoice } from "../validation/invoiceValidation";
-import fieldStyles from "../../../components/FormField/controls.module.css";
-import styles from "./InvoiceForm.module.css";
+import { useState } from 'react';
+import FormField from '../../../components/FormField/FormField';
+import { validateInvoice } from '../validation/invoiceValidation';
+import fieldStyles from '../../../components/FormField/controls.module.css';
+import styles from './InvoiceForm.module.css';
 
 function InvoiceForm({
   initialValues,
@@ -11,14 +11,14 @@ function InvoiceForm({
   onSubmit,
   onCancel,
   isSubmitting,
-  submitLabel = "Save",
+  submitLabel = 'Save',
   onValidationError,
 }) {
   const [values, setValues] = useState({
-    sellerId: initialValues?.sellerId ?? "",
-    customerId: initialValues?.customerId ?? "",
-    date: initialValues?.date ?? "",
-    amount: initialValues?.amount ?? "",
+    sellerId: initialValues?.sellerId ?? '',
+    customerId: initialValues?.customerId ?? '',
+    date: initialValues?.date ?? '',
+    amount: initialValues?.amount ?? '',
   });
   const [errors, setErrors] = useState({});
 
@@ -45,14 +45,14 @@ function InvoiceForm({
       <FormField label="Seller" error={errors.sellerId} htmlFor="sellerId">
         <select
           id="sellerId"
-          className={`${fieldStyles.select} ${errors.sellerId ? fieldStyles.inputError : ""}`}
+          className={`${fieldStyles.select} ${errors.sellerId ? fieldStyles.inputError : ''}`}
           value={values.sellerId}
-          onChange={handleChange("sellerId")}
+          onChange={handleChange('sellerId')}
         >
           <option value="">— Select a seller —</option>
           {sellers.map((s) => (
             <option key={s.id} value={s.id}>
-              {s.companyName} {!s.isActive ? "(inactive)" : ""}
+              {s.companyName} {!s.isActive ? '(inactive)' : ''}
             </option>
           ))}
         </select>
@@ -65,9 +65,9 @@ function InvoiceForm({
       >
         <select
           id="customerId"
-          className={`${fieldStyles.select} ${errors.customerId ? fieldStyles.inputError : ""}`}
+          className={`${fieldStyles.select} ${errors.customerId ? fieldStyles.inputError : ''}`}
           value={values.customerId}
-          onChange={handleChange("customerId")}
+          onChange={handleChange('customerId')}
         >
           <option value="">— Select a customer —</option>
           {customers.map((c) => (
@@ -82,9 +82,9 @@ function InvoiceForm({
         <input
           id="date"
           type="date"
-          className={`${fieldStyles.input} ${errors.date ? fieldStyles.inputError : ""}`}
+          className={`${fieldStyles.input} ${errors.date ? fieldStyles.inputError : ''}`}
           value={values.date}
-          onChange={handleChange("date")}
+          onChange={handleChange('date')}
         />
       </FormField>
 
@@ -94,9 +94,9 @@ function InvoiceForm({
           type="number"
           min="0"
           step="0.01"
-          className={`${fieldStyles.input} ${errors.amount ? fieldStyles.inputError : ""}`}
+          className={`${fieldStyles.input} ${errors.amount ? fieldStyles.inputError : ''}`}
           value={values.amount}
-          onChange={handleChange("amount")}
+          onChange={handleChange('amount')}
           placeholder="e.g. 325400"
         />
       </FormField>
@@ -116,7 +116,7 @@ function InvoiceForm({
           onClick={handleSubmit}
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Saving..." : submitLabel}
+          {isSubmitting ? 'Saving...' : submitLabel}
         </button>
       </div>
     </div>

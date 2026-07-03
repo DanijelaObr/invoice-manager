@@ -1,22 +1,22 @@
-import { useState } from "react";
-import FormField from "../../../components/FormField/FormField";
-import { validateCustomer } from "../validation/customerValidation";
-import fieldStyles from "../../../components/FormField/controls.module.css";
-import styles from "./CustomerForm.module.css";
+import { useState } from 'react';
+import FormField from '../../../components/FormField/FormField';
+import { validateCustomer } from '../validation/customerValidation';
+import fieldStyles from '../../../components/FormField/controls.module.css';
+import styles from './CustomerForm.module.css';
 
 function CustomerForm({
   initialValues,
   onSubmit,
   onCancel,
   isSubmitting,
-  submitLabel = "Save",
+  submitLabel = 'Save',
   onValidationError,
 }) {
   const [values, setValues] = useState({
-    name: initialValues?.name ?? "",
-    surname: initialValues?.surname ?? "",
-    address: initialValues?.address ?? "",
-    age: initialValues?.age ?? "",
+    name: initialValues?.name ?? '',
+    surname: initialValues?.surname ?? '',
+    address: initialValues?.address ?? '',
+    age: initialValues?.age ?? '',
   });
   const [errors, setErrors] = useState({});
 
@@ -44,9 +44,9 @@ function CustomerForm({
           id="name"
           type="text"
           maxLength={50}
-          className={`${fieldStyles.input} ${errors.name ? fieldStyles.inputError : ""}`}
+          className={`${fieldStyles.input} ${errors.name ? fieldStyles.inputError : ''}`}
           value={values.name}
-          onChange={handleChange("name")}
+          onChange={handleChange('name')}
         />
       </FormField>
 
@@ -55,9 +55,9 @@ function CustomerForm({
           id="surname"
           type="text"
           maxLength={50}
-          className={`${fieldStyles.input} ${errors.surname ? fieldStyles.inputError : ""}`}
+          className={`${fieldStyles.input} ${errors.surname ? fieldStyles.inputError : ''}`}
           value={values.surname}
-          onChange={handleChange("surname")}
+          onChange={handleChange('surname')}
         />
       </FormField>
 
@@ -66,9 +66,9 @@ function CustomerForm({
           id="address"
           type="text"
           maxLength={200}
-          className={`${fieldStyles.input} ${errors.address ? fieldStyles.inputError : ""}`}
+          className={`${fieldStyles.input} ${errors.address ? fieldStyles.inputError : ''}`}
           value={values.address}
-          onChange={handleChange("address")}
+          onChange={handleChange('address')}
         />
       </FormField>
 
@@ -78,9 +78,9 @@ function CustomerForm({
           type="number"
           min="18"
           max="120"
-          className={`${fieldStyles.input} ${errors.age ? fieldStyles.inputError : ""}`}
+          className={`${fieldStyles.input} ${errors.age ? fieldStyles.inputError : ''}`}
           value={values.age}
-          onChange={handleChange("age")}
+          onChange={handleChange('age')}
         />
       </FormField>
 
@@ -99,7 +99,7 @@ function CustomerForm({
           onClick={handleSubmit}
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Saving..." : submitLabel}
+          {isSubmitting ? 'Saving...' : submitLabel}
         </button>
       </div>
     </div>

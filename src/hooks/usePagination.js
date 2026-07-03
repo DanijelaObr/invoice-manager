@@ -1,5 +1,5 @@
-import { useState, useMemo, useEffect } from "react";
-import { ITEMS_PER_PAGE } from "../utils/constants";
+import { useState, useMemo, useEffect } from 'react';
+import { ITEMS_PER_PAGE } from '../utils/constants';
 
 export function usePagination(data, initialItemsPerPage = ITEMS_PER_PAGE) {
   const [currentPage, setCurrentPage] = useState(1);

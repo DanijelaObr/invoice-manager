@@ -1,8 +1,8 @@
-import { RouterProvider } from "react-router-dom";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { router } from "./router";
-import { queryClient } from "./queryClient";
-import { ToastProvider } from "../components/Toast/ToastContext";
+import { RouterProvider } from 'react-router-dom';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { router } from './router';
+import { queryClient } from './queryClient';
+import { ToastProvider } from '../components/Toast/ToastContext';
 
 function App() {
   return (

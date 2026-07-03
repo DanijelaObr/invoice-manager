@@ -1,6 +1,6 @@
-import { createPortal } from "react-dom";
-import { CheckCircle, AlertCircle, Info, X } from "lucide-react";
-import styles from "./Toast.module.css";
+import { createPortal } from 'react-dom';
+import { CheckCircle, AlertCircle, Info, X } from 'lucide-react';
+import styles from './Toast.module.css';
 
 const icons = {
   success: CheckCircle,

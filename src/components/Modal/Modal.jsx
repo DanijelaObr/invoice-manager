@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { createPortal } from "react-dom";
-import { X } from "lucide-react";
-import styles from "./Modal.module.css";
+import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import { X } from 'lucide-react';
+import styles from './Modal.module.css';
 
 function Modal({ isOpen, onClose, title, children, width, hideHeader }) {
   // Zatvaranje na Escape + zaključavanje skrola dok je modal otvoren
@@ -9,15 +9,15 @@ function Modal({ isOpen, onClose, title, children, width, hideHeader }) {
     if (!isOpen) return;
 
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === 'Escape') onClose();
     };
 
-    document.addEventListener("keydown", handleKeyDown);
-    document.body.style.overflow = "hidden";
+    document.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
     };
   }, [isOpen, onClose]);
 

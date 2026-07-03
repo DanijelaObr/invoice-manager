@@ -55,7 +55,7 @@
   --space-xl: 32px;
 
   /* ===== Tipografija ===== */
-  --font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-size-sm: 13px;
   --font-size-base: 14px;
   --font-size-lg: 18px;

@@ -1,20 +1,20 @@
-import { useState } from "react";
-import FormField from "../../../components/FormField/FormField";
-import { validateSeller } from "../validation/sellerValidation";
-import fieldStyles from "../../../components/FormField/controls.module.css";
-import styles from "./SellerForm.module.css";
+import { useState } from 'react';
+import FormField from '../../../components/FormField/FormField';
+import { validateSeller } from '../validation/sellerValidation';
+import fieldStyles from '../../../components/FormField/controls.module.css';
+import styles from './SellerForm.module.css';
 
 function SellerForm({
   initialValues,
   onSubmit,
   onCancel,
   isSubmitting,
-  submitLabel = "Save",
+  submitLabel = 'Save',
   onValidationError,
 }) {
   const [values, setValues] = useState({
-    companyName: initialValues?.companyName ?? "",
-    hqAddress: initialValues?.hqAddress ?? "",
+    companyName: initialValues?.companyName ?? '',
+    hqAddress: initialValues?.hqAddress ?? '',
     isActive: initialValues?.isActive ?? true,
   });
   const [errors, setErrors] = useState({});
@@ -51,9 +51,9 @@ function SellerForm({
           id="companyName"
           type="text"
           maxLength={100}
-          className={`${fieldStyles.input} ${errors.companyName ? fieldStyles.inputError : ""}`}
+          className={`${fieldStyles.input} ${errors.companyName ? fieldStyles.inputError : ''}`}
           value={values.companyName}
-          onChange={handleChange("companyName")}
+          onChange={handleChange('companyName')}
         />
       </FormField>
 
@@ -66,9 +66,9 @@ function SellerForm({
           id="hqAddress"
           type="text"
           maxLength={200}
-          className={`${fieldStyles.input} ${errors.hqAddress ? fieldStyles.inputError : ""}`}
+          className={`${fieldStyles.input} ${errors.hqAddress ? fieldStyles.inputError : ''}`}
           value={values.hqAddress}
-          onChange={handleChange("hqAddress")}
+          onChange={handleChange('hqAddress')}
         />
       </FormField>
 
@@ -97,7 +97,7 @@ function SellerForm({
           onClick={handleSubmit}
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Saving..." : submitLabel}
+          {isSubmitting ? 'Saving...' : submitLabel}
         </button>
       </div>
     </div>

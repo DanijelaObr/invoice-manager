@@ -1,5 +1,5 @@
-import { motion, AnimatePresence } from "framer-motion";
-import styles from "./DataTable.module.css";
+import { motion, AnimatePresence } from 'framer-motion';
+import styles from './DataTable.module.css';
 
 function DataTable({
   columns,
@@ -7,7 +7,7 @@ function DataTable({
   isSelected,
   onRowClick,
   currentPage,
-  emptyMessage = "No data.",
+  emptyMessage = 'No data.',
 }) {
   if (data.length === 0) {
     return <p className={styles.empty}>{emptyMessage}</p>;
