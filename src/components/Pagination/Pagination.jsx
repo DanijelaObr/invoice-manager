@@ -15,13 +15,13 @@ function Pagination({
   return (
     <div className={styles.wrapper}>
       {totalPages > 1 && (
-        <nav className={styles.pagination} aria-label="Paginacija">
+        <nav className={styles.pagination} aria-label="Pagination">
           <button
             type="button"
             className={styles.navBtn}
             onClick={() => onPageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            aria-label="Prethodna stranica"
+            aria-label="Previous page"
           >
             <ChevronLeft size={18} />
           </button>
@@ -47,7 +47,7 @@ function Pagination({
             className={styles.navBtn}
             onClick={() => onPageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            aria-label="Sljedeća stranica"
+            aria-label="Next page"
           >
             <ChevronRight size={18} />
           </button>
@@ -59,7 +59,7 @@ function Pagination({
           className={styles.pageSize}
           value={itemsPerPage}
           onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
-          aria-label="Broj redova po stranici"
+          aria-label="Page size"
         >
           {PAGE_SIZE_OPTIONS.map((size) => (
             <option key={size} value={size}>

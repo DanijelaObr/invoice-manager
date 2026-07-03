@@ -20,7 +20,7 @@ function ToastContainer({ toasts, onRemove }) {
             type="button"
             className={styles.close}
             onClick={() => onRemove(toast.id)}
-            aria-label="Zatvori"
+            aria-label="Close"
           >
             <X size={16} />
           </button>
