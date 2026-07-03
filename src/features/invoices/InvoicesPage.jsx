@@ -158,8 +158,8 @@ function InvoicesPage() {
       try {
         await deleteInvoice.mutateAsync(id);
         successCount++;
-      } catch {
-        // nastavi sa ostalima čak i ako jedan padne
+      } catch (error) {
+        console.error(`Failed to delete invoice ${id}:`, error);
       }
     }
 

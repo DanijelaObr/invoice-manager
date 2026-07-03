@@ -149,26 +149,28 @@ function CustomersPage() {
   const handleConfirmDelete = async () => {
     const idsToDelete = [...selectedIds];
     let successCount = 0;
+    const failedIds = [];
 
     for (const id of idsToDelete) {
       try {
         await deleteCustomer.mutateAsync(id);
         successCount++;
-      } catch {
-        // nastavi
+      } catch (error) {
+        console.error(`Failed to delete customer ${id}:`, error);
+        failedIds.push(id);
       }
     }
 
     if (successCount > 0) {
       showToast(
         successCount === 1
-          ? "Customer deleted"
-          : `Customers deleted: ${successCount}.`,
+          ? "Customer deleted."
+          : `Deleted customers: ${successCount}.`,
         "success",
       );
     }
-    if (successCount < idsToDelete.length) {
-      showToast("Some customers were not deleted.", "error");
+    if (failedIds.length > 0) {
+      showToast(`Failed to delete ${failedIds.length} customer(s).`, "error");
     }
 
     setIsConfirmOpen(false);

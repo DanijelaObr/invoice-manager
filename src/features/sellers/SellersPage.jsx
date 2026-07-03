@@ -151,8 +151,8 @@ function SellersPage() {
       try {
         await deleteSeller.mutateAsync(id);
         successCount++;
-      } catch {
-        // nastavi sa ostalima
+      } catch (error) {
+        console.error(`Failed to delete seller ${id}:`, error);
       }
     }
 
