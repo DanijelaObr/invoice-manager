@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
+import { useParams, useNavigate, useSearch } from '@tanstack/react-router';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import DataTable from '../../components/DataTable/DataTable';
 import Spinner from '../../components/Spinner/Spinner';
@@ -19,7 +19,7 @@ import { usePagination } from '../../hooks/usePagination';
 import { ITEMS_PER_PAGE } from '../../utils/constants';
 import { useRowSelection } from '../../hooks/useRowSelection';
 
-function CustomersPage() {
+const CustomersPage = () => {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
@@ -33,7 +33,8 @@ function CustomersPage() {
     singleSelectedId,
   } = useRowSelection();
 
-  const { id: editId } = useParams();
+  const { id: editId } = useParams({ strict: false });
+  const { highlight: highlightId } = useSearch({ strict: false });
   const navigate = useNavigate();
   const { showToast } = useToast();
 
@@ -44,16 +45,14 @@ function CustomersPage() {
   const updateCustomer = useUpdateCustomer();
   const deleteCustomer = useDeleteCustomer();
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const highlightId = searchParams.get('highlight');
-
   const isRowHighlighted = (id) =>
     isSelected(id) || String(id) === String(editId);
 
   useEffect(() => {
     if (highlightId) {
       selectRow(highlightId);
-      setSearchParams({}, { replace: true });
+      // Clear the highlight from the URL after selecting the row
+      navigate({ to: '/customers', replace: true });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [highlightId]);
@@ -74,7 +73,7 @@ function CustomersPage() {
   useEffect(() => {
     if (editId && !isLoading && customers.length > 0 && !customerToEdit) {
       showToast('Customer not found.', 'error');
-      navigate('/customers', { replace: true });
+      navigate({ to: '/customers', replace: true });
     }
   }, [
     editId,
@@ -96,7 +95,6 @@ function CustomersPage() {
     toggleSelection(id);
   };
 
-  // CREATE
   const handleCreate = () => setIsCreateOpen(true);
   const handleCloseCreate = () => setIsCreateOpen(false);
   const handleCreateSubmit = (values) => {
@@ -109,25 +107,28 @@ function CustomersPage() {
     });
   };
 
-  // EDIT
   const handleEdit = () => {
-    if (singleSelectedId) navigate(`/customers/${singleSelectedId}`);
+    if (singleSelectedId) {
+      navigate({
+        to: '/customers/$id',
+        params: { id: String(singleSelectedId) },
+      });
+    }
   };
-  const handleCloseEdit = () => navigate('/customers');
+  const handleCloseEdit = () => navigate({ to: '/customers' });
   const handleEditSubmit = (values) => {
     updateCustomer.mutate(
       { id: editId, data: { ...values, id: editId } },
       {
         onSuccess: () => {
           showToast('Customer edited successfully.', 'success');
-          navigate('/customers');
+          navigate({ to: '/customers' });
         },
-        onError: () => showToast('Error ediitng customer.', 'error'),
+        onError: () => showToast('Error editing customer.', 'error'),
       },
     );
   };
 
-  // DELETE — bulk operation with integrity validation
   const handleDelete = () => {
     if (selectedCount === 0) return;
 
@@ -257,6 +258,6 @@ function CustomersPage() {
       />
     </div>
   );
-}
+};
 
 export default CustomersPage;

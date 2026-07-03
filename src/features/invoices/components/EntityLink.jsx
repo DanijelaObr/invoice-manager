@@ -1,12 +1,12 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@tanstack/react-router';
 import styles from './EntityLink.module.css';
 
-function EntityLink({ to, children }) {
+const EntityLink = ({ to, highlight, children }) => {
   const navigate = useNavigate();
 
   const handleClick = (e) => {
-    e.stopPropagation(); // Disable row selection for invoices
-    navigate(to);
+    e.stopPropagation();
+    navigate({ to, search: { highlight: String(highlight) } });
   };
 
   return (
@@ -14,6 +14,6 @@ function EntityLink({ to, children }) {
       {children}
     </button>
   );
-}
+};
 
 export default EntityLink;

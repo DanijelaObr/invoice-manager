@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
+import { useParams, useNavigate, useSearch } from '@tanstack/react-router';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import DataTable from '../../components/DataTable/DataTable';
 import Spinner from '../../components/Spinner/Spinner';
@@ -19,7 +19,7 @@ import { usePagination } from '../../hooks/usePagination';
 import { ITEMS_PER_PAGE } from '../../utils/constants';
 import { useRowSelection } from '../../hooks/useRowSelection';
 
-function SellersPage() {
+const SellersPage = () => {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
@@ -33,7 +33,8 @@ function SellersPage() {
     singleSelectedId,
   } = useRowSelection();
 
-  const { id: editId } = useParams();
+  const { id: editId } = useParams({ strict: false });
+  const { highlight: highlightId } = useSearch({ strict: false });
   const navigate = useNavigate();
   const { showToast } = useToast();
 
@@ -44,16 +45,14 @@ function SellersPage() {
   const updateSeller = useUpdateSeller();
   const deleteSeller = useDeleteSeller();
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const highlightId = searchParams.get('highlight');
-
   const isRowHighlighted = (id) =>
     isSelected(id) || String(id) === String(editId);
 
   useEffect(() => {
     if (highlightId) {
       selectRow(highlightId);
-      setSearchParams({}, { replace: true });
+      // Clear the highlight from the URL after selecting the row
+      navigate({ to: '/sellers', replace: true });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [highlightId]);
@@ -74,7 +73,7 @@ function SellersPage() {
   useEffect(() => {
     if (editId && !isLoading && sellers.length > 0 && !sellerToEdit) {
       showToast('Seller not found.', 'error');
-      navigate('/sellers', { replace: true });
+      navigate({ to: '/sellers', replace: true });
     }
   }, [editId, isLoading, sellers.length, sellerToEdit, navigate, showToast]);
 
@@ -92,7 +91,6 @@ function SellersPage() {
     toggleSelection(id);
   };
 
-  // CREATE
   const handleCreate = () => setIsCreateOpen(true);
   const handleCloseCreate = () => setIsCreateOpen(false);
   const handleCreateSubmit = (values) => {
@@ -105,29 +103,31 @@ function SellersPage() {
     });
   };
 
-  // EDIT
   const handleEdit = () => {
-    if (singleSelectedId) navigate(`/sellers/${singleSelectedId}`);
+    if (singleSelectedId) {
+      navigate({
+        to: '/sellers/$id',
+        params: { id: String(singleSelectedId) },
+      });
+    }
   };
-  const handleCloseEdit = () => navigate('/sellers');
+  const handleCloseEdit = () => navigate({ to: '/sellers' });
   const handleEditSubmit = (values) => {
     updateSeller.mutate(
       { id: editId, data: { ...values, id: editId } },
       {
         onSuccess: () => {
           showToast('Seller edited successfully.', 'success');
-          navigate('/sellers');
+          navigate({ to: '/sellers' });
         },
         onError: () => showToast('Error editing seller.', 'error'),
       },
     );
   };
 
-  // DELETE — bulk operation with integrity check
   const handleDelete = () => {
     if (selectedCount === 0) return;
 
-    // Is any of the selected sellers linked to an invoice?
     const blocked = selectedIds.filter((id) =>
       invoices.some((inv) => String(inv.sellerId) === String(id)),
     );
@@ -252,6 +252,6 @@ function SellersPage() {
       />
     </div>
   );
-}
+};
 
 export default SellersPage;

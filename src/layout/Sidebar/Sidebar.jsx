@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from '@tanstack/react-router';
 import { FileText, Store, Users } from 'lucide-react';
 import styles from './Sidebar.module.css';
 
@@ -8,26 +8,25 @@ const navItems = [
   { to: '/customers', label: 'Customers', Icon: Users },
 ];
 
-function Sidebar() {
+const Sidebar = () => {
   return (
     <aside className={styles.sidebar}>
       <nav className={styles.nav}>
         {navItems.map(({ to, label, Icon }) => (
-          <NavLink
+          <Link
             key={to}
             to={to}
-            className={({ isActive }) =>
-              isActive ? `${styles.item} ${styles.active}` : styles.item
-            }
+            className={styles.item}
+            activeProps={{ className: `${styles.item} ${styles.active}` }}
             title={label}
           >
             <Icon className={styles.icon} size={22} />
             <span className={styles.label}>{label}</span>
-          </NavLink>
+          </Link>
         ))}
       </nav>
     </aside>
   );
-}
+};
 
 export default Sidebar;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from '@tanstack/react-router';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import DataTable from '../../components/DataTable/DataTable';
 import Spinner from '../../components/Spinner/Spinner';
@@ -22,7 +22,7 @@ import { ITEMS_PER_PAGE } from '../../utils/constants';
 import EntityLink from './components/EntityLink';
 import { useRowSelection } from '../../hooks/useRowSelection';
 
-function InvoicesPage() {
+const InvoicesPage = () => {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
@@ -35,7 +35,8 @@ function InvoicesPage() {
     singleSelectedId,
   } = useRowSelection();
 
-  const { id: editId } = useParams(); // Reads :id from the URL (/invoices/:id)
+  // strict: false — works on both /invoices and /invoices/$id
+  const { id: editId } = useParams({ strict: false });
   const navigate = useNavigate();
   const { showToast } = useToast();
 
@@ -56,7 +57,6 @@ function InvoicesPage() {
     changeItemsPerPage,
   } = usePagination(invoices, ITEMS_PER_PAGE);
 
-  // Invoice being edited (based on URL :id), found in the already loaded list
   const invoiceToEdit = editId
     ? invoices.find((inv) => String(inv.id) === String(editId))
     : null;
@@ -64,11 +64,10 @@ function InvoicesPage() {
   const isRowHighlighted = (id) =>
     isSelected(id) || String(id) === String(editId);
 
-  // If the URL contains a non-existent :id (e.g. /invoices/999), redirect back to the list
   useEffect(() => {
     if (editId && !isLoading && invoices.length > 0 && !invoiceToEdit) {
       showToast('Invoice not found.', 'error');
-      navigate('/invoices', { replace: true });
+      navigate({ to: '/invoices', replace: true });
     }
   }, [editId, isLoading, invoices.length, invoiceToEdit, navigate, showToast]);
 
@@ -84,7 +83,7 @@ function InvoicesPage() {
       key: 'seller',
       header: 'Seller',
       render: (row) => (
-        <EntityLink to={`/sellers?highlight=${row.sellerId}`}>
+        <EntityLink to="/sellers" highlight={row.sellerId}>
           {getSellerName(row.sellerId)}
         </EntityLink>
       ),
@@ -93,7 +92,7 @@ function InvoicesPage() {
       key: 'customer',
       header: 'Customer',
       render: (row) => (
-        <EntityLink to={`/customers?highlight=${row.customerId}`}>
+        <EntityLink to="/customers" highlight={row.customerId}>
           {getCustomerName(row.customerId)}
         </EntityLink>
       ),
@@ -110,7 +109,6 @@ function InvoicesPage() {
     toggleSelection(id);
   };
 
-  // CREATE
   const handleCreate = () => setIsCreateOpen(true);
   const handleCloseCreate = () => setIsCreateOpen(false);
 
@@ -124,12 +122,16 @@ function InvoicesPage() {
     });
   };
 
-  // EDIT — opened via URL
   const handleEdit = () => {
-    if (singleSelectedId) navigate(`/invoices/${singleSelectedId}`);
+    if (singleSelectedId) {
+      navigate({
+        to: '/invoices/$id',
+        params: { id: String(singleSelectedId) },
+      });
+    }
   };
   const handleCloseEdit = () => {
-    navigate('/invoices'); // Closing = remove :id from the URL
+    navigate({ to: '/invoices' });
   };
 
   const handleEditSubmit = (values) => {
@@ -138,7 +140,7 @@ function InvoicesPage() {
       {
         onSuccess: () => {
           showToast('Invoice updated successfully.', 'success');
-          navigate('/invoices');
+          navigate({ to: '/invoices' });
         },
         onError: () => showToast('Error updating invoice.', 'error'),
       },
@@ -150,7 +152,6 @@ function InvoicesPage() {
   };
 
   const handleConfirmDelete = async () => {
-    // Delete all selected items one by one
     const idsToDelete = [...selectedIds];
     let successCount = 0;
 
@@ -213,7 +214,6 @@ function InvoicesPage() {
         )}
       </div>
 
-      {/* CREATE modal */}
       <Modal
         isOpen={isCreateOpen}
         onClose={handleCloseCreate}
@@ -232,7 +232,6 @@ function InvoicesPage() {
         />
       </Modal>
 
-      {/* EDIT modal — open when :id exists and the invoice is found */}
       <Modal
         isOpen={!!invoiceToEdit}
         onClose={handleCloseEdit}
@@ -265,6 +264,6 @@ function InvoicesPage() {
       />
     </div>
   );
-}
+};
 
 export default InvoicesPage;
