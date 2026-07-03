@@ -48,6 +48,13 @@
       "date": "2026-07-01",
       "amount": 125000,
       "id": "hwYOk2gJCyU"
+    },
+    {
+      "sellerId": "kYGadnw-r-s",
+      "customerId": "3",
+      "date": "2026-07-01",
+      "amount": 123456,
+      "id": "fVYQdFd5zOM"
     }
   ],
   "sellers": [
@@ -80,18 +87,6 @@
       "hqAddress": "Banja Luka, BiH",
       "isActive": true,
       "id": "kYGadnw-r-s"
-    },
-    {
-      "companyName": "Oracle",
-      "hqAddress": "Banja Luka, BiH",
-      "isActive": true,
-      "id": "wTniQa9PjO4"
-    },
-    {
-      "companyName": "Microsoft",
-      "hqAddress": "Banja Luka, BiH",
-      "isActive": true,
-      "id": "uoApTPeN1zM"
     }
   ],
   "customers": [
