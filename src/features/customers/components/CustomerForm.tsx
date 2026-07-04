@@ -64,7 +64,7 @@ const CustomerForm = ({
         handleSubmit();
       }}
     >
-      <FormField label="First name" error={errors.name} htmlFor="name">
+      <FormField label="Name" error={errors.name} htmlFor="name">
         <input
           id="name"
           type="text"
@@ -76,7 +76,7 @@ const CustomerForm = ({
         />
       </FormField>
 
-      <FormField label="Last name" error={errors.surname} htmlFor="surname">
+      <FormField label="Surname" error={errors.surname} htmlFor="surname">
         <input
           id="surname"
           type="text"

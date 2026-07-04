@@ -87,8 +87,8 @@ const CustomersPage = () => {
   ]);
 
   const columns: Column<Customer>[] = [
-    { key: 'name', header: 'First name' },
-    { key: 'surname', header: 'Last name' },
+    { key: 'name', header: 'Name' },
+    { key: 'surname', header: 'Surame' },
     { key: 'address', header: 'Address' },
     { key: 'age', header: 'Age' },
   ];

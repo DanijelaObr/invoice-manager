@@ -3,16 +3,9 @@
     {
       "sellerId": "3",
       "customerId": "3",
-      "date": "2026-07-01",
+      "date": "2026-07-02",
       "amount": 10000,
       "id": "iqfXsQBRqY0"
-    },
-    {
-      "sellerId": "kYGadnw-r-s",
-      "customerId": "3",
-      "date": "2026-07-01",
-      "amount": 100000,
-      "id": "bObKga5G76w"
     },
     {
       "sellerId": "2",
@@ -20,13 +13,6 @@
       "date": "2026-07-01",
       "amount": 120000,
       "id": "NpRm2bLmoRE"
-    },
-    {
-      "sellerId": "3",
-      "customerId": "XhSalZ_H7tw",
-      "date": "2026-07-01",
-      "amount": 130000,
-      "id": "iQ41M9xS49E"
     },
     {
       "sellerId": "2",
@@ -69,6 +55,27 @@
       "date": "2026-07-02",
       "amount": 100000,
       "id": "WBEZITrlp0g"
+    },
+    {
+      "sellerId": "1",
+      "customerId": "2",
+      "date": "2026-07-02",
+      "amount": 100000,
+      "id": "hHrcUKS3Tx4"
+    },
+    {
+      "sellerId": "3",
+      "customerId": "2",
+      "date": "2026-07-03",
+      "amount": 123000,
+      "id": "YLmWHK4DPS0"
+    },
+    {
+      "sellerId": "kYGadnw-r-s",
+      "customerId": "VjgpkxTOuGQ",
+      "date": "2026-07-02",
+      "amount": 125478,
+      "id": "bX6K2WQUJoE"
     }
   ],
   "sellers": [
