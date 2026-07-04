@@ -167,3 +167,7 @@ Colors, spacing, typography, radii, and layout dimensions are centralized as CSS
 - Seeded demo data lives in `db.json` so the app shows content immediately on first run.
 - Mock data changes made through the app are written back to `db.json` by json-server and persist across restarts.
 - The app is designed for desktop use, consistent with the wireframe and the nature of an admin/management tool.
+
+### Production considerations
+
+The current build produces a single main chunk (~510kB) that slightly exceeds Vite's 500kB warning threshold. For production I would introduce route-based code-splitting with `React.lazy` for the three page components, so each route loads only what it needs. It was kept as a single bundle here to keep the setup simple for the assignment.

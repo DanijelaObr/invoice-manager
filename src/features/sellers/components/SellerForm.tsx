@@ -58,7 +58,13 @@ const SellerForm = ({
   };
 
   return (
-    <div className={styles.form}>
+    <form
+      className={styles.form}
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit();
+      }}
+    >
       <FormField
         label="Company name"
         error={errors.companyName}
@@ -67,6 +73,7 @@ const SellerForm = ({
         <input
           id="companyName"
           type="text"
+          autoFocus
           maxLength={100}
           className={`${fieldStyles.input} ${errors.companyName ? fieldStyles.inputError : ''}`}
           value={values.companyName}
@@ -109,15 +116,14 @@ const SellerForm = ({
           Discard
         </button>
         <button
-          type="button"
+          type="submit"
           className={styles.submitBtn}
-          onClick={handleSubmit}
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Saving...' : submitLabel}
         </button>
       </div>
-    </div>
+    </form>
   );
 };
 

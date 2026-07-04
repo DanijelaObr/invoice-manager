@@ -64,7 +64,13 @@ const InvoiceForm = ({
   };
 
   return (
-    <div className={styles.form}>
+    <form
+      className={styles.form}
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit();
+      }}
+    >
       <FormField
         label="Seller"
         labelExtra={<InfoTooltip text="Inactive seller cannot be selected." />}
@@ -73,6 +79,7 @@ const InvoiceForm = ({
       >
         <select
           id="sellerId"
+          autoFocus
           className={`${fieldStyles.select} ${errors.sellerId ? fieldStyles.inputError : ''}`}
           value={values.sellerId}
           onChange={handleChange('sellerId')}
@@ -140,15 +147,14 @@ const InvoiceForm = ({
           Discard
         </button>
         <button
-          type="button"
+          type="submit"
           className={styles.submitBtn}
-          onClick={handleSubmit}
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Saving...' : submitLabel}
         </button>
       </div>
-    </div>
+    </form>
   );
 };
 

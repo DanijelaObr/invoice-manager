@@ -55,6 +55,20 @@
       "date": "2026-07-01",
       "amount": 123456,
       "id": "fVYQdFd5zOM"
+    },
+    {
+      "sellerId": "2",
+      "customerId": "2",
+      "date": "2026-07-01",
+      "amount": 325400,
+      "id": "eo6uDsyMmdM"
+    },
+    {
+      "sellerId": "1",
+      "customerId": "2",
+      "date": "2026-07-02",
+      "amount": 100000,
+      "id": "WBEZITrlp0g"
     }
   ],
   "sellers": [
@@ -124,6 +138,13 @@
       "address": "Gospodska, Banja Luka",
       "age": 30,
       "id": "VjgpkxTOuGQ"
+    },
+    {
+      "name": "Danijela",
+      "surname": "Obradovic",
+      "address": "Banja Luka",
+      "age": 30,
+      "id": "qvC4idOe-M4"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

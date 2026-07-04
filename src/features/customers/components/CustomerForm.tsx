@@ -57,11 +57,18 @@ const CustomerForm = ({
   };
 
   return (
-    <div className={styles.form}>
+    <form
+      className={styles.form}
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit();
+      }}
+    >
       <FormField label="First name" error={errors.name} htmlFor="name">
         <input
           id="name"
           type="text"
+          autoFocus
           maxLength={50}
           className={`${fieldStyles.input} ${errors.name ? fieldStyles.inputError : ''}`}
           value={values.name}
@@ -113,15 +120,14 @@ const CustomerForm = ({
           Discard
         </button>
         <button
-          type="button"
+          type="submit"
           className={styles.submitBtn}
-          onClick={handleSubmit}
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Saving...' : submitLabel}
         </button>
       </div>
-    </div>
+    </form>
   );
 };
 
