@@ -40,7 +40,7 @@ const SellersPage = () => {
   const navigate = useNavigate();
   const { showToast } = useToast();
 
-  const { data: sellers = [], isLoading } = useSellers();
+  const { data: sellers = [], isLoading, isError } = useSellers();
   const { data: invoices = [] } = useInvoices();
 
   const createSeller = useCreateSeller();
@@ -191,6 +191,16 @@ const SellersPage = () => {
       <div style={{ marginTop: 'var(--header-height)' }}>
         {isLoading ? (
           <Spinner />
+        ) : isError ? (
+          <p
+            style={{
+              textAlign: 'center',
+              padding: 'var(--space-xl)',
+              color: 'var(--color-error, #c0392b)',
+            }}
+          >
+            Unable to load data. Please check your connection and try again.
+          </p>
         ) : (
           <>
             <DataTable

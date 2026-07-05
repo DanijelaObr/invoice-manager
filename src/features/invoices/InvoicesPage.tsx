@@ -42,7 +42,7 @@ const InvoicesPage = () => {
   const navigate = useNavigate();
   const { showToast } = useToast();
 
-  const { data: invoices = [], isLoading } = useInvoices();
+  const { data: invoices = [], isLoading, isError } = useInvoices();
   const { data: sellers = [] } = useSellers();
   const { data: customers = [] } = useCustomers();
   const deleteInvoice = useDeleteInvoice();
@@ -197,6 +197,16 @@ const InvoicesPage = () => {
       <div style={{ marginTop: 'var(--header-height)' }}>
         {isLoading ? (
           <Spinner />
+        ) : isError ? (
+          <p
+            style={{
+              textAlign: 'center',
+              padding: 'var(--space-xl)',
+              color: 'var(--color-error, #c0392b)',
+            }}
+          >
+            Unable to load data. Please check your connection and try again.
+          </p>
         ) : (
           <>
             <DataTable

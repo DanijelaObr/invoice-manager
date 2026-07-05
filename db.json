@@ -22,13 +22,6 @@
       "id": "WBEZITrlp0g"
     },
     {
-      "sellerId": "kYGadnw-r-s",
-      "customerId": "VjgpkxTOuGQ",
-      "date": "2026-07-02",
-      "amount": 125478,
-      "id": "bX6K2WQUJoE"
-    },
-    {
       "sellerId": "3",
       "customerId": "3",
       "date": "2026-07-02",
@@ -81,22 +74,9 @@
       "companyName": "Amazon",
       "hqAddress": "Seattle, WA",
       "isActive": false
-    },
-    {
-      "companyName": "Microsoft",
-      "hqAddress": "Banja Luka, BiH",
-      "isActive": true,
-      "id": "kYGadnw-r-s"
     }
   ],
   "customers": [
-    {
-      "name": "Markoooooooooooooooooooooooooooooooooooooooooooooo",
-      "surname": "Markovic",
-      "address": "Knez Mihailova 2, Beograd",
-      "age": 34,
-      "id": "1"
-    },
     {
       "id": "2",
       "name": "Stefan",
