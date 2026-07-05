@@ -1,46 +1,11 @@
 {
   "invoices": [
     {
-      "sellerId": "3",
-      "customerId": "3",
-      "date": "2026-07-02",
-      "amount": 10000,
-      "id": "iqfXsQBRqY0"
-    },
-    {
       "sellerId": "2",
       "customerId": "3",
       "date": "2026-07-01",
       "amount": 120000,
       "id": "NpRm2bLmoRE"
-    },
-    {
-      "sellerId": "2",
-      "customerId": "1",
-      "date": "2026-07-01",
-      "amount": 120000,
-      "id": "PobhK4ej6k8"
-    },
-    {
-      "sellerId": "1",
-      "customerId": "XhSalZ_H7tw",
-      "date": "2026-07-01",
-      "amount": 10000,
-      "id": "klHNAONlRe0"
-    },
-    {
-      "sellerId": "2",
-      "customerId": "3",
-      "date": "2026-07-01",
-      "amount": 125000,
-      "id": "hwYOk2gJCyU"
-    },
-    {
-      "sellerId": "kYGadnw-r-s",
-      "customerId": "3",
-      "date": "2026-07-01",
-      "amount": 123456,
-      "id": "fVYQdFd5zOM"
     },
     {
       "sellerId": "2",
@@ -57,33 +22,47 @@
       "id": "WBEZITrlp0g"
     },
     {
-      "sellerId": "1",
-      "customerId": "2",
-      "date": "2026-07-02",
-      "amount": 100000,
-      "id": "hHrcUKS3Tx4"
-    },
-    {
-      "sellerId": "3",
-      "customerId": "2",
-      "date": "2026-07-03",
-      "amount": 123000,
-      "id": "YLmWHK4DPS0"
-    },
-    {
       "sellerId": "kYGadnw-r-s",
       "customerId": "VjgpkxTOuGQ",
       "date": "2026-07-02",
       "amount": 125478,
       "id": "bX6K2WQUJoE"
+    },
+    {
+      "sellerId": "3",
+      "customerId": "3",
+      "date": "2026-07-02",
+      "amount": 9999999,
+      "id": "NqinUBiIvWM"
+    },
+    {
+      "sellerId": "2",
+      "customerId": "3",
+      "date": "2026-07-01",
+      "amount": 0.1,
+      "id": "7SyccKyN0ZM"
+    },
+    {
+      "sellerId": "1",
+      "customerId": "3",
+      "date": "2026-07-01",
+      "amount": 123456,
+      "id": "fKVriw7OL4Q"
+    },
+    {
+      "sellerId": "3",
+      "customerId": "XhSalZ_H7tw",
+      "date": "2026-07-02",
+      "amount": 154236,
+      "id": "qwxuZ68zR4w"
     }
   ],
   "sellers": [
     {
-      "id": "1",
       "companyName": "Microsoft",
       "hqAddress": "Redmond, WA",
-      "isActive": true
+      "isActive": true,
+      "id": "1"
     },
     {
       "id": "2",
@@ -112,7 +91,7 @@
   ],
   "customers": [
     {
-      "name": "Marko",
+      "name": "Markoooooooooooooooooooooooooooooooooooooooooooooo",
       "surname": "Markovic",
       "address": "Knez Mihailova 2, Beograd",
       "age": 34,

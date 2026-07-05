@@ -64,6 +64,9 @@
   font-weight: 400;
   border-top: 2px solid var(--color-border-strong);
   border-bottom: 2px solid var(--color-border-strong);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .td:first-child {

@@ -57,13 +57,20 @@ const DataTable = <T extends { id: string }>({
                 }
                 onClick={() => onRowClick(row.id)}
               >
-                {columns.map((col) => (
-                  <td key={col.key} className={styles.td}>
-                    {col.render
-                      ? col.render(row)
-                      : String(row[col.key as keyof T])}
-                  </td>
-                ))}
+                {columns.map((col) => {
+                  const content = col.render
+                    ? col.render(row)
+                    : String(row[col.key as keyof T]);
+                  // title only for plain text cells (not for custom-rendered React elements)
+                  const title = col.render
+                    ? undefined
+                    : String(row[col.key as keyof T]);
+                  return (
+                    <td key={col.key} className={styles.td} title={title}>
+                      {content}
+                    </td>
+                  );
+                })}
               </motion.tr>
             ))}
           </AnimatePresence>

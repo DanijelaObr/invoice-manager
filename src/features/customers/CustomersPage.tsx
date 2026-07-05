@@ -140,7 +140,9 @@ const CustomersPage = () => {
 
     if (blocked.length > 0) {
       showToast(
-        'Some of the selected customers are on invoices and cannot be deleted.',
+        blocked.length === 1
+          ? 'The selected customer is on an invoice and cannot be deleted.'
+          : 'Some of the selected customers are on invoices and cannot be deleted.',
         'error',
       );
       return;

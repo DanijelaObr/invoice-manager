@@ -59,6 +59,8 @@ const CustomerForm = ({
   return (
     <form
       className={styles.form}
+      noValidate
+      autoComplete="off"
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmit();
@@ -68,6 +70,7 @@ const CustomerForm = ({
         <input
           id="name"
           type="text"
+          autoComplete="off"
           autoFocus
           maxLength={50}
           className={`${fieldStyles.input} ${errors.name ? fieldStyles.inputError : ''}`}
@@ -80,6 +83,7 @@ const CustomerForm = ({
         <input
           id="surname"
           type="text"
+          autoComplete="off"
           maxLength={50}
           className={`${fieldStyles.input} ${errors.surname ? fieldStyles.inputError : ''}`}
           value={values.surname}
@@ -91,6 +95,7 @@ const CustomerForm = ({
         <input
           id="address"
           type="text"
+          autoComplete="off"
           maxLength={200}
           className={`${fieldStyles.input} ${errors.address ? fieldStyles.inputError : ''}`}
           value={values.address}
@@ -104,6 +109,7 @@ const CustomerForm = ({
           type="number"
           min="18"
           max="120"
+          autoComplete="off"
           className={`${fieldStyles.input} ${errors.age ? fieldStyles.inputError : ''}`}
           value={values.age}
           onChange={handleChange('age')}

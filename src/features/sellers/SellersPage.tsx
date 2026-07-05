@@ -137,7 +137,9 @@ const SellersPage = () => {
 
     if (blocked.length > 0) {
       showToast(
-        'Some of the selected sellers are on the invoices and cannot be deleted.',
+        blocked.length === 1
+          ? 'The selected seller is on an invoice and cannot be deleted.'
+          : 'Some of the selected sellers are on the invoices and cannot be deleted.',
         'error',
       );
       return;

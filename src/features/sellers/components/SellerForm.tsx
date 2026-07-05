@@ -60,6 +60,8 @@ const SellerForm = ({
   return (
     <form
       className={styles.form}
+      noValidate
+      autoComplete="off"
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmit();

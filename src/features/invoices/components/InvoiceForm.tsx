@@ -66,6 +66,8 @@ const InvoiceForm = ({
   return (
     <form
       className={styles.form}
+      noValidate
+      autoComplete="off"
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmit();
@@ -105,11 +107,16 @@ const InvoiceForm = ({
           onChange={handleChange('customerId')}
         >
           <option value="">— Select a customer —</option>
-          {customers.map((c) => (
-            <option key={c.id} value={c.id}>
-              {c.name} {c.surname}
-            </option>
-          ))}
+          {customers.map((c) => {
+            const fullName = `${c.name} ${c.surname}`;
+            const label =
+              fullName.length > 25 ? `${fullName.slice(0, 25)}…` : fullName;
+            return (
+              <option key={c.id} value={c.id} title={fullName}>
+                {label}
+              </option>
+            );
+          })}
         </select>
       </FormField>
 
